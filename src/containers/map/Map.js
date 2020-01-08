@@ -147,7 +147,7 @@ function Map(props) {
 
     return (
         <div className="mapContainer">
-            {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo} />}
+            {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo} feature={clickedFeature} />}
             <div className="buttons">
                 <button onClick={goToUserLocation}>My location</button>
                 <button onClick={toggleMode}>Dark/Light</button>
