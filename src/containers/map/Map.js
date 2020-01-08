@@ -59,7 +59,7 @@ function Map(props) {
             'line-color': 'black',
             'line-width': 4
         }
-    },{
+    }, {
         type: 'fill',
         source: 'clickedLayer',
         id: 'fillClicked',
@@ -102,14 +102,15 @@ function Map(props) {
     };
 
     const onClick = event => {
+        console.log(event)
         const {
             features,
         } = event;
 
 
-        if (features && features.source.length && features.source[0] === 'mainMap') {
-            
-        
+        if (features && features.length && features[0].source === 'mainMap') {
+
+
             const newClickedFeature = features && features.find(f => f.layer.id === 'data');
 
 
@@ -121,7 +122,7 @@ function Map(props) {
                     "type": "Feature",
                     "properties": {},
                     "geometry": {
-                        "type": "Point",
+                        "type": "Polygon",
                         "coordinates": newClickedFeature.geometry.coordinates
                     }
                 }]
@@ -146,7 +147,7 @@ function Map(props) {
 
     return (
         <div className="mapContainer">
-           {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo}/>}
+            {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo} />}
             <div className="buttons">
                 <button onClick={goToUserLocation}>My location</button>
                 <button onClick={toggleMode}>Dark/Light</button>
@@ -165,8 +166,8 @@ function Map(props) {
                 {(clickedFeature && clickedLayer && clickedSource) &&
 
                     <Source id='clickedLayer' type="geojson" data={clickedSource}>
-                    <Layer  {...clickedLayer[0]} />
-                    <Layer  {...clickedLayer[1]} />
+                        <Layer  {...clickedLayer[0]} />
+                        <Layer  {...clickedLayer[1]} />
 
                     </Source>}
 
