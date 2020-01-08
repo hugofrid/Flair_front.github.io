@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import MapGL, { Source, Layer } from 'react-map-gl';
 import data from '../../datasets/idf-pop.js';
 import './Map.css'
+import './modalInfo/ModalInfo.js'
 import Tooltips from "./tooltips/Tooltips.js";
+import ModalInfo from "./modalInfo/ModalInfo.js";
 
 function Map(props) {
 
@@ -19,7 +21,7 @@ function Map(props) {
     const [tooltipsPosition, setTooltipsPosition] = useState({ x: null, y: null });
     const [dataLayer, setLayer] = useState({
         id: 'data',
-        source: 'hdensity',
+        source: 'mainMap',
         type: 'fill',
         paint: {
             'fill-color': [
@@ -49,15 +51,23 @@ function Map(props) {
         }
     })
     const [clickedFeature, setClickedFeature] = useState(null);
-    const [clickedLayer, setClickedLayer] = useState({
+    const [clickedLayer, setClickedLayer] = useState([{
         type: 'line',
         source: 'clickedLayer',
         id: 'line',
         paint: {
             'line-color': 'black',
-            'line-width': 8
+            'line-width': 4
         }
-    });
+    },{
+        type: 'fill',
+        source: 'clickedLayer',
+        id: 'fillClicked',
+        paint: {
+            'fill-opacity': 0.8,
+        }
+    }
+    ]);
     const [clickedSource, setClickedSource] = useState(null);
 
 
@@ -97,57 +107,74 @@ function Map(props) {
         } = event;
 
 
+        if (features && features.source.length && features.source[0] === 'mainMap') {
+            
+        
+            const newClickedFeature = features && features.find(f => f.layer.id === 'data');
 
-        const newClickedFeature = features && features.find(f => f.layer.id === 'data');
 
+            console.log("click", newClickedFeature.geometry.coordinates);
 
-        console.log("click", newClickedFeature.geometry.coordinates);
-
-        const newClickedSourceFeature = {
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "properties": {},
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": newClickedFeature.geometry.coordinates
-                }
-            }]
+            const newClickedSourceFeature = {
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": newClickedFeature.geometry.coordinates
+                    }
+                }]
+            }
+            setClickedFeature(newClickedFeature.properties);
+            setClickedSource(newClickedSourceFeature);
+            console.log(clickedFeature, clickedLayer, clickedSource)
         }
-        setClickedFeature(newClickedFeature.properties);
-        setClickedSource(newClickedSourceFeature);
-        console.log(clickedFeature,clickedLayer,clickedSource)
+        else {
+            setClickedFeature(null);
+            setClickedSource(null);
+        }
     };
 
     const toggleMode = () => {
         mapStyle === 'light-v10' ? setMapStyle('dark-v10') : setMapStyle('light-v10')
     }
+    const closeInfo = () => {
+        setClickedFeature(null);
+        setClickedSource(null);
+    }
 
-    return (<div className="mapContainer">
-        <button onClick={goToUserLocation}>My location</button>
-        <button onClick={toggleMode}>Dark/Light</button>
+    return (
+        <div className="mapContainer">
+           {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo}/>}
+            <div className="buttons">
+                <button onClick={goToUserLocation}>My location</button>
+                <button onClick={toggleMode}>Dark/Light</button>
+            </div>
 
-        <MapGL {...viewport}
-            mapStyle={'mapbox://styles/mapbox/' + mapStyle} onViewportChange={(viewport => setViewport(viewport))}
-            onHover={onHover}
-            onClick={onClick}
-            mapboxApiAccessToken="pk.eyJ1IjoiYm90cmVsIiwiYSI6ImNrM2Z5ODVxdzA5N3YzY3FjajcwcmloM2UifQ.rYqepC72dc2DxKTLLPCPgQ" >
+            <MapGL {...viewport}
+                mapStyle={'mapbox://styles/mapbox/' + mapStyle} onViewportChange={(viewport => setViewport(viewport))}
+                onHover={onHover}
+                onClick={onClick}
+                mapboxApiAccessToken="pk.eyJ1IjoiYm90cmVsIiwiYSI6ImNrM2Z5ODVxdzA5N3YzY3FjajcwcmloM2UifQ.rYqepC72dc2DxKTLLPCPgQ" >
 
-            <Source id='hdensity' type="geojson" data={data} />
-            <Layer  {...dataLayer} />
+                <Source id='mainMap' type="geojson" data={data} />
+                <Layer  {...dataLayer} />
 
 
-            {(clickedFeature && clickedLayer && clickedSource) &&
+                {(clickedFeature && clickedLayer && clickedSource) &&
 
-                <Source id='clickedLayer' type="geojson" data={clickedSource}>
-                    <Layer  {...clickedLayer} />
-                </Source>}
-            
+                    <Source id='clickedLayer' type="geojson" data={clickedSource}>
+                    <Layer  {...clickedLayer[0]} />
+                    <Layer  {...clickedLayer[1]} />
 
-            {hoveredFeature && <Tooltips feature={hoveredFeature.properties} tooltipsPosition={tooltipsPosition}></Tooltips>}
+                    </Source>}
 
-        </MapGL>
-    </div>
+
+                {hoveredFeature && <Tooltips feature={hoveredFeature.properties} tooltipsPosition={tooltipsPosition}></Tooltips>}
+
+            </MapGL>
+        </div>
     )
 }
 
