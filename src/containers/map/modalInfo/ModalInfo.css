@@ -16,32 +16,28 @@
 
 .closeIcon{
     position:absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     top:5px;
     right: 5px;
-    border-radius:50%;
-    width:34px;
-    height: 34px;
-    background:lightgrey;
-    cursor:pointer;
+
 }
 
 .titleCity{
-    width:100%;
     text-align: center;
     font-size: 1.5rem;
+    padding: 0 2rem;
+
 
 }
 
 .subInfo{
-    width: 100%;
     text-align: center;
     font-size:0.8rem;
-
+    margin-bottom:2rem;
 }
 
-
+.chartTitle{
+    text-align: center;
+    width:100%;
+}
 
 

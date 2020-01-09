@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import MapGL, { Source, Layer } from 'react-map-gl';
-import data from '../../datasets/idf-pop.js';
+import data from '../../datasets/test-compose';
 import './Map.css'
 import './modalInfo/ModalInfo.js'
 import Tooltips from "./tooltips/Tooltips.js";
 import ModalInfo from "./modalInfo/ModalInfo.js";
+import IconBtn from '../../componants/iconBtn/iconBtn.js';
+import { locationIcon,plusIcon,minusIcon,sunIcon,moonIcon } from '../../icons/icons.js'
 
 function Map(props) {
 
@@ -16,7 +18,7 @@ function Map(props) {
         zoom: 9
     })
     const [hoveredFeature, setHoveredFeature] = useState(null)
-    const [mapStyle, setMapStyle] = useState('light-v10')
+    const [mapStyle, setMapStyle] = useState('light')
 
     const [tooltipsPosition, setTooltipsPosition] = useState({ x: null, y: null });
     const [dataLayer, setLayer] = useState({
@@ -27,25 +29,27 @@ function Map(props) {
             'fill-color': [
                 'interpolate',
                 ["linear"],
-                ['get', 'pop_0_14_ans_en_2011_princ'],
-                0.0,
-                '#F2F12D',
-                500.0,
-                '#EED322',
-                750.0,
-                '#E6B71E',
-                1000,
-                '#DA9C20',
-                2500,
-                '#CA8323',
-                5000,
-                '#B86B25',
-                7500,
-                '#A25626',
-                10000,
-                '#8B4225',
-                25000,
-                '#723122'
+                ['get', 'estimation5'],
+                0,
+                '#ef2917',
+                1,
+                '#ed4a00',
+                2,
+                '#e86400',
+                3,
+                '#de7c00',
+                4,
+                '#d09100',
+                5,
+                '#bfa500',
+                6,
+                '#a9b700',
+                7,
+                '#8dc800',
+                8,
+                '#67d800',
+                9,
+                '#01e70b'
             ],
             'fill-opacity': 0.5
         }
@@ -64,7 +68,7 @@ function Map(props) {
         source: 'clickedLayer',
         id: 'fillClicked',
         paint: {
-            'fill-opacity': 0.8,
+            'fill-opacity': 0.2,
         }
     }
     ]);
@@ -79,7 +83,7 @@ function Map(props) {
                 width: "100%",
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude,
-                zoom: 12
+                zoom: 11
             }
 
             setViewport(newViewport)
@@ -138,7 +142,7 @@ function Map(props) {
     };
 
     const toggleMode = () => {
-        mapStyle === 'light-v10' ? setMapStyle('dark-v10') : setMapStyle('light-v10')
+        mapStyle === 'light' ? setMapStyle('dark') : setMapStyle('light')
     }
     const closeInfo = () => {
         setClickedFeature(null);
@@ -148,13 +152,15 @@ function Map(props) {
     return (
         <div className="mapContainer">
             {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo} feature={clickedFeature} />}
+           
             <div className="buttons">
-                <button onClick={goToUserLocation}>My location</button>
-                <button onClick={toggleMode}>Dark/Light</button>
+                <IconBtn onClick={goToUserLocation} icon={locationIcon} />
+                
+                <IconBtn onClick={toggleMode} icon={mapStyle === 'light' ? moonIcon : sunIcon}/>
             </div>
 
             <MapGL {...viewport}
-                mapStyle={'mapbox://styles/mapbox/' + mapStyle} onViewportChange={(viewport => setViewport(viewport))}
+                mapStyle={'mapbox://styles/mapbox/' + mapStyle + '-v10'} onViewportChange={(viewport => setViewport(viewport))}
                 onHover={onHover}
                 onClick={onClick}
                 mapboxApiAccessToken="pk.eyJ1IjoiYm90cmVsIiwiYSI6ImNrM2Z5ODVxdzA5N3YzY3FjajcwcmloM2UifQ.rYqepC72dc2DxKTLLPCPgQ" >
