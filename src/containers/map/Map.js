@@ -1,15 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MapGL, { Source, Layer } from 'react-map-gl';
-import data from '../../datasets/test-compose';
+
 import './Map.css'
 import './modalInfo/ModalInfo.js'
 import Tooltips from "./tooltips/Tooltips.js";
 import ModalInfo from "./modalInfo/ModalInfo.js";
 import IconBtn from '../../componants/iconBtn/iconBtn.js';
-import { locationIcon,plusIcon,minusIcon,sunIcon,moonIcon } from '../../icons/icons.js'
+import { locationIcon, plusIcon, minusIcon, sunIcon, moonIcon } from '../../icons/icons.js'
+import getDataSet from '../../services/dataServices.js'
+
 
 function Map(props) {
+   
+    const [mapLayer, setMapLayer] = useState();
+    const  fetchMapData = async () => {
+        let res = await getDataSet();
+        if (res) {
+            const newLayer = JSON.parse(res)
+            setMapLayer(newLayer);
+        }
+      }
 
+    useEffect(() => {
+        fetchMapData()
+    },[props])
+    
     const [viewport, setViewport] = useState({
         width: "100%",
         height: "100%",
@@ -89,6 +104,18 @@ function Map(props) {
             setViewport(newViewport)
         })
     }
+    const zoom = (dir) => {
+        let vp = viewport;
+        if (dir === "+"&& vp.zoom <24) {
+            vp.zoom = vp.zoom + 1
+        }
+        if (dir === "-" && vp.zoom > 0) {
+            vp.zoom = vp.zoom - 1
+        }
+        setViewport(vp)
+        console.log(vp.zoom,viewport.zoom)
+
+    }
 
 
     const onHover = event => {
@@ -154,9 +181,13 @@ function Map(props) {
             {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo} feature={clickedFeature} />}
            
             <div className="buttons">
-                <IconBtn onClick={goToUserLocation} icon={locationIcon} />
                 
-                <IconBtn onClick={toggleMode} icon={mapStyle === 'light' ? moonIcon : sunIcon}/>
+                <IconBtn onClick={toggleMode} icon={mapStyle === 'light' ? moonIcon : sunIcon} alt='switch mode'/>
+                <IconBtn onClick={() => zoom('+')} icon={plusIcon} alt='Zomm +' />
+                <IconBtn onClick={() => zoom('-')} icon={minusIcon} alt='Zomm -' />
+                <IconBtn onClick={goToUserLocation} icon={locationIcon} alt='go to my location' />
+                
+                
             </div>
 
             <MapGL {...viewport}
@@ -165,8 +196,10 @@ function Map(props) {
                 onClick={onClick}
                 mapboxApiAccessToken="pk.eyJ1IjoiYm90cmVsIiwiYSI6ImNrM2Z5ODVxdzA5N3YzY3FjajcwcmloM2UifQ.rYqepC72dc2DxKTLLPCPgQ" >
 
-                <Source id='mainMap' type="geojson" data={data} />
-                <Layer  {...dataLayer} />
+                   { mapLayer && <Source id='mainMap' type="geojson" data={ mapLayer } >
+                        <Layer  {...dataLayer} />
+                    </Source>}
+                
 
 
                 {(clickedFeature && clickedLayer && clickedSource) &&
