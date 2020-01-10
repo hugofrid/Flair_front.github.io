@@ -1,0 +1,22 @@
+.iconBtn{
+    width:34px;
+    height:34px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    border-radius: 0.25rem;
+    background: lightgray;
+    cursor: pointer;
+    color:black;
+    margin:0.5rem;
+}
+
+.iconBtn:hover{
+    background: rgb(184, 180, 180,0.8);
+}
+
+.icon{
+    width:24px;
+    height:24px;
+}
+
