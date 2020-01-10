@@ -1,136 +1,45 @@
-<<<<<<< Updated upstream
-/*
-.App-flair {
-
-
-  position: absolute;
-  width: 211px;
-  height: 89px;
-  left: 216px;
-  bottom: 522px;
-}
-*/
-html{
-  height: 100%;
-  background-color: #CFD8DC;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-  background-image: url(flair.png);
-  position: absolute;
-width: 180px;
-height: 89px;
-left: 2px;
-top: 2px;
-
-}
-
-.App-header {
-  min-height: 20vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: #000000;
-  background: #FF1111;
-  border-radius: 5px;
-  margin-bottom: 5px;
-
-
-left: 22.17%;
-right: 22.17%;
-top: 22.73%;
-bottom: 22.73%;
-
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 23px;
-/* identical to box height */
-text-align: center;
-
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-h1 {
-  text-align: left;
-  margin-left: 100px;
-}
-
-
-h3 {
-  text-align: left;
-  margin-left: 100px;
-  margin-right: 100px;
-  font-family: SeoulNamsan CB;
-font-style: normal;
   
-}
+  .App {
+    text-align: center;
+  }
+  
+  .App-link {
+    color: #000000;
+    background: tomato;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  
+  
+  left: 22.17%;
+  right: 22.17%;
+  top: 22.73%;
+  bottom: 22.73%;
+  
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height */
+  text-align: center;
+  
+  }
 
-footer{
-  position: fixed;
-  bottom: 0;
-=======
-html {
-  background-color: #CFD8DC;
-  font-family: Palatino;}
+  body {
+    margin-top: 100px;
+  }
+  
+  h1 {
+    text-align: left;
+    margin-left: 100px;
+  }
+  
+  
+  h3 {
+    text-align: left;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-style: initial;
+    margin-bottom: 50px;
+    
+  }
 
-.app{
-  display: flex;
-  flex-direction: column;
-  width: 100wh;
-  height:100vh;
-}
-
-.navBar{
-  width:auto;
-  height:5px;
-  background:grey;
-}
-
-.mapArea{
-  flex:1;
->>>>>>> Stashed changes
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-  background-image: url(flair.png);
-  position: absolute;
-  width: 180px;
-  height: 89px;
-  left: 10px;
-  top: 10px;
-}
-
-footer{
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-.credits {
-  text-align: right;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
