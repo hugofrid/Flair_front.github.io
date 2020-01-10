@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /*
 .App-flair {
 
@@ -88,4 +89,48 @@ font-style: normal;
 footer{
   position: fixed;
   bottom: 0;
+=======
+html {
+  background-color: #CFD8DC;
+  font-family: Palatino;}
+
+.app{
+  display: flex;
+  flex-direction: column;
+  width: 100wh;
+  height:100vh;
+}
+
+.navBar{
+  width:auto;
+  height:5px;
+  background:grey;
+}
+
+.mapArea{
+  flex:1;
+>>>>>>> Stashed changes
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  background-image: url(flair.png);
+  position: absolute;
+  width: 180px;
+  height: 89px;
+  left: 10px;
+  top: 10px;
+}
+
+footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.credits {
+  text-align: right;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }

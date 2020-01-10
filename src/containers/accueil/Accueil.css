@@ -1,0 +1,44 @@
+  
+  .App {
+    text-align: center;
+  }
+  
+  .App-link {
+    color: #000000;
+    background: tomato;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  
+  
+  left: 22.17%;
+  right: 22.17%;
+  top: 22.73%;
+  bottom: 22.73%;
+  
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height */
+  text-align: center;
+  
+  }
+
+  body {
+    margin-top: 100px;
+  }
+  
+  h1 {
+    text-align: left;
+    margin-left: 100px;
+  }
+  
+  
+  h3 {
+    text-align: left;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-style: initial;
+    margin-bottom: 50px;
+    
+  }
