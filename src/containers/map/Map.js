@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MapGL, { Source, Layer } from 'react-map-gl';
+import MapGL, { Source, Layer, Marker } from 'react-map-gl';
 
 import './Map.css'
 import './modalInfo/ModalInfo.js'
@@ -8,6 +8,7 @@ import ModalInfo from "./modalInfo/ModalInfo.js";
 import IconBtn from '../../componants/iconBtn/iconBtn.js';
 import { locationIcon, plusIcon, minusIcon, sunIcon, moonIcon } from '../../icons/icons.js'
 import getDataSet from '../../services/dataServices.js'
+import getApiSet from '../../services/apiServices.js'
 
 
 function Map(props) {
@@ -24,6 +25,72 @@ function Map(props) {
     useEffect(() => {
         fetchMapData()
     },[props])
+
+
+    
+
+    /**useEffect(() => {
+        fetch(
+            `http://api.gedeon.im/ads?key=xg4oQJjIMtzetP02EbcIiv7FrVT2g7en&localization=75015`
+            
+          )
+            .then(res => res.json())
+            .then(response => {
+              
+              console.log(response.results[0].id)
+              //return response;
+            })
+            .catch(error => console.log(error));
+    },[props])*/
+
+    
+    const [mapMarker, setMapMarker] = useState([]);
+
+    async function fetchApiData() {
+        const res = await getApiSet("75015");
+        if (res) {
+
+            let geoData = {
+                "type": "FeatureCollection",
+                "features": []
+            }
+            let jsonContent;
+
+            for (var i = 0; i < res.results.length; i++) {
+                let feature = {
+                    "type": 'Feature',
+                    "geometry": {
+                        "type": 'Point',
+                        "coordinates": [res.results[i].localization.lng,res.results[i].localization.lat],
+                    },
+                    "properties": {
+                        "title": res.results[i].title,
+                        "text" : res.results[i].text,
+                        "nbRooms": parseInt(res.results[i].nb_rooms),
+                        "price": parseInt(res.results[i].price),
+                        "surface": parseInt(res.results[i].surface),
+                        "type": res.results[i].type.name,
+                        "city": res.results[i].localization.city,
+                        "url": res.results[i].url       
+                    }
+                }
+                geoData.features.push(feature);
+            }
+
+            console.log(geoData);
+            jsonContent  = await  JSON.stringify(geoData);
+            setMapMarker(jsonContent);
+            //console.log(jsonContent)
+
+        }
+      }
+    
+      useEffect(() => {
+        fetchApiData();
+      },[props]);
+
+    
+    
     
     const [viewport, setViewport] = useState({
         width: "100%",
@@ -199,7 +266,11 @@ function Map(props) {
                    { mapLayer && <Source id='mainMap' type="geojson" data={ mapLayer } >
                         <Layer  {...dataLayer} />
                     </Source>}
-                
+
+                    <Marker latitude={48.8400408110339} longitude={2.2926884040624} offsetLeft={-20} offsetTop={-10}>
+                    <div>You are here</div>
+                    </Marker>
+                    
 
 
                 {(clickedFeature && clickedLayer && clickedSource) &&
