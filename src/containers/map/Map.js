@@ -12,22 +12,23 @@ import getApiSet from '../../services/apiServices.js'
 
 
 function Map(props) {
-   
+
     const [mapLayer, setMapLayer] = useState();
-    const  fetchMapData = async () => {
+    const fetchMapData = async () => {
         let res = await getDataSet();
         if (res) {
             const newLayer = JSON.parse(res)
             setMapLayer(newLayer);
         }
-      }
+    }
 
     useEffect(() => {
-        fetchMapData()
-    },[props])
+        fetchMapData();
+        fetchApiData();
+    }, [props])
 
 
-    
+
 
     /**useEffect(() => {
         fetch(
@@ -43,55 +44,45 @@ function Map(props) {
             .catch(error => console.log(error));
     },[props])*/
 
-    
-    const [mapMarker, setMapMarker] = useState([]);
 
-    async function fetchApiData() {
-        const res = await getApiSet("75015");
-        if (res) {
+    const [mapMarker, setMapMarker] = useState();
 
-            let geoData = {
-                "type": "FeatureCollection",
-                "features": []
-            }
-            let jsonContent;
-
-            for (var i = 0; i < res.results.length; i++) {
-                let feature = {
-                    "type": 'Feature',
-                    "geometry": {
-                        "type": 'Point',
-                        "coordinates": [res.results[i].localization.lng,res.results[i].localization.lat],
-                    },
-                    "properties": {
-                        "title": res.results[i].title,
-                        "text" : res.results[i].text,
-                        "nbRooms": parseInt(res.results[i].nb_rooms),
-                        "price": parseInt(res.results[i].price),
-                        "surface": parseInt(res.results[i].surface),
-                        "type": res.results[i].type.name,
-                        "city": res.results[i].localization.city,
-                        "url": res.results[i].url       
-                    }
-                }
-                geoData.features.push(feature);
-            }
-
-            console.log(geoData);
-            jsonContent  = await  JSON.stringify(geoData);
-            setMapMarker(jsonContent);
-            //console.log(jsonContent)
-
+    const fetchApiData =  async () => {
+        const res = await  getApiSet("75015");
+        let geoData = {
+            "type": "FeatureCollection",
+            "features": []
         }
-      }
-    
-      useEffect(() => {
-        fetchApiData();
-      },[props]);
+         await res.map(elem => {
+            let feature = {
+                "type": 'Feature',
+                "geometry": {
+                    "type": 'Point',
+                    "coordinates": [elem.localization.lng, elem.localization.lat],
+                },
+                "properties": {
+                    "title": elem.title,
+                    "text": elem.text,
+                    "nbRooms": parseInt(elem.nb_rooms),
+                    "price": parseInt(elem.price),
+                    "surface": parseInt(elem.surface),
+                    "type": elem.type.name,
+                    "city": elem.localization.city,
+                    "url": elem.url
+                }
+            }
+            geoData.features.push(feature);
+        })
+        console.log(mapMarker);
 
-    
-    
-    
+
+        //console.log(geoData.features);
+        // jsonContent  = await  JSON.stringify(geoData);
+        setMapMarker(geoData.features);
+        //console.log(jsonContent)
+
+    }
+
     const [viewport, setViewport] = useState({
         width: "100%",
         height: "100%",
@@ -173,14 +164,14 @@ function Map(props) {
     }
     const zoom = (dir) => {
         let vp = viewport;
-        if (dir === "+"&& vp.zoom <24) {
+        if (dir === "+" && vp.zoom < 24) {
             vp.zoom = vp.zoom + 1
         }
         if (dir === "-" && vp.zoom > 0) {
             vp.zoom = vp.zoom - 1
         }
         setViewport(vp)
-        console.log(vp.zoom,viewport.zoom)
+        console.log(vp.zoom, viewport.zoom)
 
     }
 
@@ -246,15 +237,15 @@ function Map(props) {
     return (
         <div className="mapContainer">
             {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo} feature={clickedFeature} />}
-           
+
             <div className="buttons">
-                
-                <IconBtn onClick={toggleMode} icon={mapStyle === 'light' ? moonIcon : sunIcon} alt='switch mode'/>
+
+                <IconBtn onClick={toggleMode} icon={mapStyle === 'light' ? moonIcon : sunIcon} alt='switch mode' />
                 <IconBtn onClick={() => zoom('+')} icon={plusIcon} alt='Zomm +' />
                 <IconBtn onClick={() => zoom('-')} icon={minusIcon} alt='Zomm -' />
                 <IconBtn onClick={goToUserLocation} icon={locationIcon} alt='go to my location' />
-                
-                
+
+
             </div>
 
             <MapGL {...viewport}
@@ -263,14 +254,30 @@ function Map(props) {
                 onClick={onClick}
                 mapboxApiAccessToken="pk.eyJ1IjoiYm90cmVsIiwiYSI6ImNrM2Z5ODVxdzA5N3YzY3FjajcwcmloM2UifQ.rYqepC72dc2DxKTLLPCPgQ" >
 
-                   { mapLayer && <Source id='mainMap' type="geojson" data={ mapLayer } >
-                        <Layer  {...dataLayer} />
-                    </Source>}
+                {mapLayer && <Source id='mainMap' type="geojson" data={mapLayer} >
+                    <Layer  {...dataLayer} />
+                </Source>}
 
-                    <Marker latitude={48.8400408110339} longitude={2.2926884040624} offsetLeft={-20} offsetTop={-10}>
-                    <div>You are here</div>
+
+
+
+                {
+                  
+                    mapMarker && mapMarker.length  &&
+                    mapMarker.map((elem, index) => {
+                        return (
+                            <Marker key={index} latitude={parseFloat(elem.geometry.coordinates[1])} longitude={parseFloat(elem.geometry.coordinates[0])} offsetLeft={-20} offsetTop={-10}>
+                        <div>blabla</div>
                     </Marker>
-                    
+                        )
+                    })
+
+                }
+                {/* <Marker latitude={48.8} longitude={2.3} offsetLeft={-20} offsetTop={-10}>
+                        <div>blabla</div>
+                    </Marker> */}
+
+
 
 
                 {(clickedFeature && clickedLayer && clickedSource) &&
