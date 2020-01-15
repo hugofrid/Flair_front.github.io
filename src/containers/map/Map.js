@@ -6,7 +6,7 @@ import './modalInfo/ModalInfo.js'
 import Tooltips from "./tooltips/Tooltips.js";
 import ModalInfo from "./modalInfo/ModalInfo.js";
 import IconBtn from '../../componants/iconBtn/iconBtn.js';
-import { locationIcon, plusIcon, minusIcon, sunIcon, moonIcon } from '../../icons/icons.js'
+import { locationIcon, plusIcon, minusIcon, sunIcon, moonIcon, markerIcon } from '../../icons/icons.js'
 import getDataSet from '../../services/dataServices.js'
 import getApiSet from '../../services/apiServices.js'
 
@@ -49,6 +49,7 @@ function Map(props) {
 
     const fetchApiData =  async () => {
         const res = await  getApiSet("75015");
+        //console.log(res.length);
         let geoData = {
             "type": "FeatureCollection",
             "features": []
@@ -234,6 +235,10 @@ function Map(props) {
         setClickedSource(null);
     }
 
+    const onMarkerClick = event => {
+        console.log("displayed");
+    };
+
     return (
         <div className="mapContainer">
             {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo} feature={clickedFeature} />}
@@ -259,23 +264,19 @@ function Map(props) {
                 </Source>}
 
 
-
+                
 
                 {
-                  
-                    mapMarker && mapMarker.length  &&
+                    (clickedFeature && clickedFeature.codePostal==75015 && clickedLayer && clickedSource) && mapMarker && mapMarker.length  &&
                     mapMarker.map((elem, index) => {
                         return (
                             <Marker key={index} latitude={parseFloat(elem.geometry.coordinates[1])} longitude={parseFloat(elem.geometry.coordinates[0])} offsetLeft={-20} offsetTop={-10}>
-                        <div>blabla</div>
+                            <img src={markerIcon} onClick={onMarkerClick} alt="Here is a marker" height="24px" width="24px"/>
                     </Marker>
                         )
                     })
-
                 }
-                {/* <Marker latitude={48.8} longitude={2.3} offsetLeft={-20} offsetTop={-10}>
-                        <div>blabla</div>
-                    </Marker> */}
+                
 
 
 
