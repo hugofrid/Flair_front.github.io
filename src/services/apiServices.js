@@ -3,7 +3,7 @@ import axios from 'axios';
 async function getApiSet(x) {
 
     const data = await axios.get(
-      'http://api.gedeon.im/ads?key=xg4oQJjIMtzetP02EbcIiv7FrVT2g7en&localization=' + x
+      'http://api.gedeon.im/ads?key=xg4oQJjIMtzetP02EbcIiv7FrVT2g7en&transaction=sell&localization=' + x
     ).then(result => {
       return result.data
       });

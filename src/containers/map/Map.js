@@ -5,6 +5,7 @@ import './Map.css'
 import './modalInfo/ModalInfo.js'
 import Tooltips from "./tooltips/Tooltips.js";
 import ModalInfo from "./modalInfo/ModalInfo.js";
+import MarkerInfo from "./markerInfo/MarkerInfo.js";
 import IconBtn from '../../componants/iconBtn/iconBtn.js';
 import { locationIcon, plusIcon, minusIcon, sunIcon, moonIcon, markerIcon } from '../../icons/icons.js'
 import getDataSet from '../../services/dataServices.js'
@@ -47,8 +48,8 @@ function Map(props) {
 
     const [mapMarker, setMapMarker] = useState();
 
-    const fetchApiData =  async () => {
-        const res = await  getApiSet("75015");
+    const fetchApiData =  async (x) => {
+        const res = await  getApiSet(x);
         //console.log(res.length);
         let geoData = {
             "type": "FeatureCollection",
@@ -69,7 +70,9 @@ function Map(props) {
                     "surface": parseInt(elem.surface),
                     "type": elem.type.name,
                     "city": elem.localization.city,
-                    "url": elem.url
+                    "url": elem.url,
+                    "photo": elem.photos[0],
+                    "codeP": elem.localization.zip_code
                 }
             }
             geoData.features.push(feature);
@@ -220,6 +223,7 @@ function Map(props) {
             setClickedFeature(newClickedFeature.properties);
             setClickedSource(newClickedSourceFeature);
             console.log(clickedFeature, clickedLayer, clickedSource)
+            fetchApiData(newClickedFeature.properties.codePostal)
         }
         else {
             setClickedFeature(null);
@@ -235,13 +239,22 @@ function Map(props) {
         setClickedSource(null);
     }
 
-    const onMarkerClick = event => {
-        console.log("displayed");
+    const [clickedMarker, setClickedMarker] = useState(null);
+    const onMarkerClick = (elem) => {
+        console.log(elem)
+        console.log(elem.properties.title)
+    
+        setClickedMarker(elem);
     };
+
+    const closeMarkerInfo = () => {
+        setClickedMarker(null);
+    }
 
     return (
         <div className="mapContainer">
             {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo} feature={clickedFeature} />}
+            {(clickedMarker && clickedFeature && clickedMarker.properties.codeP==clickedFeature.codePostal) && <MarkerInfo onClose={closeMarkerInfo} feature={clickedMarker} />}
 
             <div className="buttons">
 
@@ -267,11 +280,11 @@ function Map(props) {
                 
 
                 {
-                    (clickedFeature && clickedFeature.codePostal==75015 && clickedLayer && clickedSource) && mapMarker && mapMarker.length  &&
+                    (clickedFeature && clickedLayer && clickedSource) && mapMarker && mapMarker.length  &&
                     mapMarker.map((elem, index) => {
                         return (
                             <Marker key={index} latitude={parseFloat(elem.geometry.coordinates[1])} longitude={parseFloat(elem.geometry.coordinates[0])} offsetLeft={-20} offsetTop={-10}>
-                            <img src={markerIcon} onClick={onMarkerClick} alt="Here is a marker" height="24px" width="24px"/>
+                            <img src={markerIcon} onClick={() => onMarkerClick(elem)} alt="Here is a marker" height="24px" width="24px"/>
                     </Marker>
                         )
                     })
