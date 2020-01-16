@@ -38,9 +38,11 @@ export const toggleMode = (mapStyle,setMapStyle) => {
     mapStyle === 'streets' ? setMapStyle('dark') : setMapStyle('streets')
 }
 
-export const zoomToFeature = (setViewport, feature) => {
+export const zoomToFeature = (feature,setViewport,setClickedFeature, setClickedSource) => {
     
      
+    
+           
     const [minLng, minLat, maxLng, maxLat] = bbox(feature);
 
     let newViewport = {
@@ -53,18 +55,6 @@ export const zoomToFeature = (setViewport, feature) => {
         zoom: 11
      }
      setViewport(newViewport);
-}
-
-export const onMapClick = (setViewport,setClickedFeature, setClickedSource, event) => {
-    const {
-        features,
-    } = event;
-
-  
-    if (features && features.length && features[0].source === 'mainMap') {
-
-        const newClickedFeature = features && features.find(f => f.layer.id === 'data');
-        zoomToFeature(setViewport,newClickedFeature);
 
         const newClickedSourceFeature = {
             "type": "FeatureCollection",
@@ -73,12 +63,26 @@ export const onMapClick = (setViewport,setClickedFeature, setClickedSource, even
                 "properties": {},
                 "geometry": {
                     "type": "Polygon",
-                    "coordinates": newClickedFeature.geometry.coordinates
+                    "coordinates": feature.geometry.coordinates
                 }
             }]
         }
-        setClickedFeature(newClickedFeature.properties);
+        setClickedFeature(feature.properties);
         setClickedSource(newClickedSourceFeature);
+}
+
+
+
+export const onMapClick = (setViewport,setClickedFeature, setClickedSource, event) => {
+    const {
+        features,
+    } = event;
+
+  
+    if (features && features.length && features[0].source === 'mainMap') {
+        const newClickedFeature = features && features.find(f => f.layer.id === 'data');
+        zoomToFeature(newClickedFeature,setViewport,setClickedFeature,setClickedSource)
+        
     }
     else {
         setClickedFeature(null);

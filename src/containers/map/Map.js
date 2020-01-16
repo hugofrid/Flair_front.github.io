@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MapGL, { Source, Layer, FlyToInterpolator } from 'react-map-gl';
-import { toggleMode, zoom, onMapClick, goToUserLocation, onHover } from './mapUtils'
+import { toggleMode, zoom, onMapClick, goToUserLocation, onHover,zoomToFeature } from './mapUtils'
 
 import './Map.css'
 import './modalInfo/ModalInfo.js'
@@ -13,7 +13,6 @@ import CityList from './cityList/CityList.js'
 
 
 function Map(props) {
-
 
 
     const [mapLayer, setMapLayer] = useState();
@@ -106,12 +105,12 @@ function Map(props) {
     return (
         <div className="mapContainer">
             <div className="rightOptions">
+
+                {mapLayer && <CityList features={mapLayer.features} onClickFeature={feat => {zoomToFeature(feat,setViewport,setClickedFeature,setClickedSource)}} activeFeature={clickedFeature}></CityList>}
                 {(clickedFeature && clickedLayer && clickedSource) &&
 
                     <ModalInfo setClickedFeature={setClickedFeature} setClickedSource={setClickedSource} feature={clickedFeature}
                     />}
-
-                {mapLayer && <CityList features={mapLayer.features}></CityList>}
             </div>
             <div className="buttons">
 
