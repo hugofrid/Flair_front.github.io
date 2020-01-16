@@ -48,9 +48,14 @@ function Map(props) {
 
     const [mapMarker, setMapMarker] = useState();
 
+    //NE PAS SUPPRIMER
+    //const fetchApiData =  async (a,b,c,d,e,f,g) => {
     const fetchApiData =  async (x) => {
         const res = await  getApiSet(x);
-        //console.log(res.length);
+        //NE PAS SUPPRIMER
+        //const res = await  getApiSet(a,b,c,d,e,f,g);
+
+        console.log("nombre de résultats : "+res.length);
         let geoData = {
             "type": "FeatureCollection",
             "features": []
@@ -224,6 +229,9 @@ function Map(props) {
             setClickedSource(newClickedSourceFeature);
             console.log(clickedFeature, clickedLayer, clickedSource)
             fetchApiData(newClickedFeature.properties.codePostal)
+            //NE PAS SUPPRIMER
+            //fetchApiData(newClickedFeature.properties.codePostal, props.feature.type, props.feature.minPrice, props.feature.maxPrice, props.feature.minSurf, props.feature.maxSurf, props.feature.rooms)
+            //fetchApiData(newClickedFeature.properties.codePostal,null,100,800000,10,500,null);
         }
         else {
             setClickedFeature(null);
@@ -274,10 +282,7 @@ function Map(props) {
 
                 {mapLayer && <Source id='mainMap' type="geojson" data={mapLayer} >
                     <Layer  {...dataLayer} />
-                </Source>}
-
-
-                
+                </Source>}                
 
                 {
                     (clickedFeature && clickedLayer && clickedSource) && mapMarker && mapMarker.length  &&

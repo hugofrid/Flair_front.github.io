@@ -24,7 +24,7 @@ function ModalInfo(props) {
                 textColor={'#000000'}
                 animDelay={0}
             />
-            <div className="chartTitle">Éstimation de la rentabilité à 5 ans</div>
+            <div className="chartTitle">Estimation de la rentabilité à 5 ans</div>
         </div>
     )
 
