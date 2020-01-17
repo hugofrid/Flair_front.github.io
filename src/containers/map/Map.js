@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import MapGL, { Source, Layer, Marker } from 'react-map-gl';
+
+import MapGL, { Source, Layer, FlyToInterpolator,Marker } from 'react-map-gl';
+import { toggleMode, zoom, onMapClick, goToUserLocation, onHover,zoomToFeature } from './mapUtils'
+
 
 import './Map.css'
 import './modalInfo/ModalInfo.js'
@@ -7,9 +10,13 @@ import Tooltips from "./tooltips/Tooltips.js";
 import ModalInfo from "./modalInfo/ModalInfo.js";
 import MarkerInfo from "./markerInfo/MarkerInfo.js";
 import IconBtn from '../../componants/iconBtn/iconBtn.js';
+
 import { locationIcon, plusIcon, minusIcon, sunIcon, moonIcon, markerIcon } from '../../icons/icons.js'
-import getDataSet from '../../services/dataServices.js'
+
 import getApiSet from '../../services/apiServices.js'
+import getDataSet from '../../services/dataServices.js';
+import CityList from './cityList/CityList.js'
+
 
 
 function Map(props) {
@@ -24,6 +31,7 @@ function Map(props) {
     }
 
     useEffect(() => {
+
         fetchMapData();
         fetchApiData();
     }, [props])
@@ -97,10 +105,13 @@ function Map(props) {
         height: "100%",
         latitude: 48.8534,
         longitude: 2.3488,
+        transitionDuration: 1000,
+        transitionInterpolator: new FlyToInterpolator(),
         zoom: 9
     })
+
     const [hoveredFeature, setHoveredFeature] = useState(null)
-    const [mapStyle, setMapStyle] = useState('light')
+    const [mapStyle, setMapStyle] = useState('streets')
 
     const [tooltipsPosition, setTooltipsPosition] = useState({ x: null, y: null });
     const [dataLayer, setLayer] = useState({
@@ -133,7 +144,7 @@ function Map(props) {
                 9,
                 '#01e70b'
             ],
-            'fill-opacity': 0.5
+            'fill-opacity': 0.3
         }
     })
     const [clickedFeature, setClickedFeature] = useState(null);
@@ -158,94 +169,6 @@ function Map(props) {
 
 
 
-    const goToUserLocation = () => {
-        navigator.geolocation.getCurrentPosition(position => {
-            let newViewport = {
-                height: "100%",
-                width: "100%",
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                zoom: 11
-            }
-
-            setViewport(newViewport)
-        })
-    }
-    const zoom = (dir) => {
-        let vp = viewport;
-        if (dir === "+" && vp.zoom < 24) {
-            vp.zoom = vp.zoom + 1
-        }
-        if (dir === "-" && vp.zoom > 0) {
-            vp.zoom = vp.zoom - 1
-        }
-        setViewport(vp)
-        console.log(vp.zoom, viewport.zoom)
-
-    }
-
-
-    const onHover = event => {
-        const {
-            features,
-            srcEvent: { offsetX, offsetY }
-        } = event;
-
-
-
-        const newHoveredFeature = features && features.find(f => f.layer.id === 'data');
-
-        setTooltipsPosition({ x: offsetX, y: offsetY });
-        setHoveredFeature(newHoveredFeature);
-    };
-
-    const onClick = event => {
-        console.log(event)
-        const {
-            features,
-        } = event;
-
-
-        if (features && features.length && features[0].source === 'mainMap') {
-
-
-            const newClickedFeature = features && features.find(f => f.layer.id === 'data');
-
-
-            console.log("click", newClickedFeature.geometry.coordinates);
-
-            const newClickedSourceFeature = {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {},
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": newClickedFeature.geometry.coordinates
-                    }
-                }]
-            }
-            setClickedFeature(newClickedFeature.properties);
-            setClickedSource(newClickedSourceFeature);
-            console.log(clickedFeature, clickedLayer, clickedSource)
-            fetchApiData(newClickedFeature.properties.codePostal)
-            //NE PAS SUPPRIMER
-            //fetchApiData(newClickedFeature.properties.codePostal, props.feature.type, props.feature.minPrice, props.feature.maxPrice, props.feature.minSurf, props.feature.maxSurf, props.feature.rooms)
-            //fetchApiData(newClickedFeature.properties.codePostal,null,100,800000,10,500,null);
-        }
-        else {
-            setClickedFeature(null);
-            setClickedSource(null);
-        }
-    };
-
-    const toggleMode = () => {
-        mapStyle === 'light' ? setMapStyle('dark') : setMapStyle('light')
-    }
-    const closeInfo = () => {
-        setClickedFeature(null);
-        setClickedSource(null);
-    }
 
     const [clickedMarker, setClickedMarker] = useState(null);
     const onMarkerClick = (elem) => {
@@ -261,28 +184,36 @@ function Map(props) {
 
     return (
         <div className="mapContainer">
-            {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo} feature={clickedFeature} />}
+              <div className="rightOptions">
+                {mapLayer && <CityList features={mapLayer.features} onClickFeature={feat => {zoomToFeature(feat,setViewport,setClickedFeature,setClickedSource)}} activeFeature={clickedFeature}></CityList>}
+                {(clickedFeature && clickedLayer && clickedSource) &&
+
+                    <ModalInfo setClickedFeature={setClickedFeature} setClickedSource={setClickedSource} feature={clickedFeature}
+                    />}
+            </div>
             {(clickedMarker && clickedFeature && clickedMarker.properties.codeP==clickedFeature.codePostal) && <MarkerInfo onClose={closeMarkerInfo} feature={clickedMarker} />}
 
             <div className="buttons">
 
-                <IconBtn onClick={toggleMode} icon={mapStyle === 'light' ? moonIcon : sunIcon} alt='switch mode' />
-                <IconBtn onClick={() => zoom('+')} icon={plusIcon} alt='Zomm +' />
-                <IconBtn onClick={() => zoom('-')} icon={minusIcon} alt='Zomm -' />
-                <IconBtn onClick={goToUserLocation} icon={locationIcon} alt='go to my location' />
-
+                 <IconBtn onClick={() => toggleMode(mapStyle, setMapStyle)} icon={mapStyle === 'light' ? moonIcon : sunIcon} alt='switch mode' />
+                <IconBtn onClick={() => zoom(viewport, setViewport, '+')} icon={plusIcon} alt='Zomm +' />
+                <IconBtn onClick={() => zoom(viewport, setViewport, '-')} icon={minusIcon} alt='Zomm -' />
+                <IconBtn onClick={() => goToUserLocation(viewport, setViewport)} icon={locationIcon} alt='go to my location' />
 
             </div>
 
             <MapGL {...viewport}
                 mapStyle={'mapbox://styles/mapbox/' + mapStyle + '-v10'} onViewportChange={(viewport => setViewport(viewport))}
-                onHover={onHover}
-                onClick={onClick}
-                mapboxApiAccessToken="pk.eyJ1IjoiYm90cmVsIiwiYSI6ImNrM2Z5ODVxdzA5N3YzY3FjajcwcmloM2UifQ.rYqepC72dc2DxKTLLPCPgQ" >
+                onHover={event => onHover(setTooltipsPosition, setHoveredFeature, event)}
+                onClick={event => onMapClick(setViewport, setClickedFeature, setClickedSource, event)}
+                mapboxApiAccessToken="pk.eyJ1IjoiYm90cmVsIiwiYSI6ImNrM2Z5ODVxdzA5N3YzY3FjajcwcmloM2UifQ.rYqepC72dc2DxKTLLPCPgQ"
+
+            >
 
                 {mapLayer && <Source id='mainMap' type="geojson" data={mapLayer} >
                     <Layer  {...dataLayer} />
-                </Source>}                
+                </Source>}
+
 
                 {
                     (clickedFeature && clickedLayer && clickedSource) && mapMarker && mapMarker.length  &&
@@ -295,10 +226,6 @@ function Map(props) {
                     })
                 }
                 
-
-
-
-
                 {(clickedFeature && clickedLayer && clickedSource) &&
 
                     <Source id='clickedLayer' type="geojson" data={clickedSource}>

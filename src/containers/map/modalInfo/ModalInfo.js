@@ -8,10 +8,15 @@ import { closeIcon } from '../../../icons/icons.js'
 
 function ModalInfo(props) {
 
+    const closeInfo = () => {
+        props.setClickedFeature(null);
+        props.setClickedSource(null);
+    }
+
     return (
         <div className="modalInfo">
 
-            <IconBtn className="closeIcon" icon={closeIcon} onClick={() => props.onClose()} alt="close"/>
+            <IconBtn className="closeIcon" icon={closeIcon} onClick={closeInfo} alt="close"/>
             <div className="titleCity">{capitalize(props.feature.city_name)}</div>
             <div className="subInfo">Population : {props.feature.population}</div>
 

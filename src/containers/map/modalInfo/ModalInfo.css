@@ -1,14 +1,13 @@
 .modalInfo{
-    position:absolute;
-    top:1.5rem;
-    right:1.5rem;;
+    position:relative;
     padding:1rem;
-    background:white;
-    opacity:0.8;
+    background:rgba(255,255,255,0.8);
     display:flex;
     flex-direction: column;
     width:300px;
-    height:450px;
+    flex:1;
+    margin-top: 5px;
+    max-height: 40%;
     z-index: 10;
     border-radius: 15px;
 
