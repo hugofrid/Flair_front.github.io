@@ -7,6 +7,7 @@ import _settignsIcon from './settings.png'
 import _closeIcon from './close.png'
 
 import _markerIcon from './marker.png'
+import _selectedMarkerIcon from './selectedMarker.png'
 
 import _listIcon from './list.png'
 import _sortAscIcon from './sort-ascending.png'
@@ -25,6 +26,7 @@ export const settignsIcon = _settignsIcon;
 export const closeIcon = _closeIcon; 
 
 export const markerIcon = _markerIcon; 
+export const selectedMarkerIcon = _selectedMarkerIcon; 
 
 export const listIcon = _listIcon; 
 export const sortDscIcon = _sortDscIcon;
