@@ -69,6 +69,7 @@ export const zoomToFeature = (feature,setViewport,setClickedFeature, setClickedS
         }
         setClickedFeature(feature.properties);
         setClickedSource(newClickedSourceFeature);
+
 }
 
 
@@ -81,7 +82,8 @@ export const onMapClick = (setViewport,setClickedFeature, setClickedSource, even
   
     if (features && features.length && features[0].source === 'mainMap') {
         const newClickedFeature = features && features.find(f => f.layer.id === 'data');
-        zoomToFeature(newClickedFeature,setViewport,setClickedFeature,setClickedSource)
+        zoomToFeature(newClickedFeature, setViewport, setClickedFeature, setClickedSource)
+    
         
     }
     else {

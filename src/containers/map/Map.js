@@ -30,14 +30,6 @@ function Map(props) {
         }
     }
 
-    useEffect(() => {
-
-        fetchMapData();
-        fetchApiData();
-    }, [props])
-
-
-
 
     /**useEffect(() => {
         fetch(
@@ -58,46 +50,48 @@ function Map(props) {
 
     //NE PAS SUPPRIMER
     //const fetchApiData =  async (a,b,c,d,e,f,g) => {
-    const fetchApiData =  async (x) => {
-        const res = await  getApiSet(x);
-        //NE PAS SUPPRIMER
-        //const res = await  getApiSet(a,b,c,d,e,f,g);
+    const fetchApiData = async () => {
+        if (clickedFeature && clickedFeature.codePostal) {
+            const res = await getApiSet(clickedFeature.codePostal);
+            //NE PAS SUPPRIMER
+            //const res = await  getApiSet(a,b,c,d,e,f,g);
 
-        console.log("nombre de résultats : "+res.length);
-        let geoData = {
-            "type": "FeatureCollection",
-            "features": []
-        }
-         await res.map(elem => {
-            let feature = {
-                "type": 'Feature',
-                "geometry": {
-                    "type": 'Point',
-                    "coordinates": [elem.localization.lng, elem.localization.lat],
-                },
-                "properties": {
-                    "title": elem.title,
-                    "text": elem.text,
-                    "nbRooms": parseInt(elem.nb_rooms),
-                    "price": parseInt(elem.price),
-                    "surface": parseInt(elem.surface),
-                    "type": elem.type.name,
-                    "city": elem.localization.city,
-                    "url": elem.url,
-                    "photo": elem.photos[0],
-                    "codeP": elem.localization.zip_code
-                }
+            console.log("nombre de résultats : " + res.length);
+            let geoData = {
+                "type": "FeatureCollection",
+                "features": []
             }
-            geoData.features.push(feature);
-        })
-        console.log(mapMarker);
+            res.map(elem => {
+                let feature = {
+                    "type": 'Feature',
+                    "geometry": {
+                        "type": 'Point',
+                        "coordinates": [elem.localization.lng, elem.localization.lat],
+                    },
+                    "properties": {
+                        "title": elem.title,
+                        "text": elem.text,
+                        "nbRooms": parseInt(elem.nb_rooms),
+                        "price": parseInt(elem.price),
+                        "surface": parseInt(elem.surface),
+                        "type": elem.type.name,
+                        "city": elem.localization.city,
+                        "url": elem.url,
+                        "photo": elem.photos[0],
+                        "codeP": elem.localization.zip_code
+                    }
+                }
+                geoData.features.push(feature);
+            })
 
 
-        //console.log(geoData.features);
-        // jsonContent  = await  JSON.stringify(geoData);
-        setMapMarker(geoData.features);
-        //console.log(jsonContent)
+            //console.log(geoData.features);
+            // jsonContent  = await  JSON.stringify(geoData);
+            setMapMarker(await geoData.features);
+            console.log(mapMarker,geoData.features);
 
+            //console.log(jsonContent)
+        }
     }
 
     const [viewport, setViewport] = useState({
@@ -182,6 +176,20 @@ function Map(props) {
         setClickedMarker(null);
     }
 
+    useEffect(() => {
+
+        fetchMapData();
+        // fetchApiData();
+    }, [props])
+
+
+
+    useEffect(() => {
+
+        fetchApiData();
+    }, [clickedFeature])
+
+
     return (
         <div className="mapContainer">
               <div className="rightOptions">
@@ -205,7 +213,7 @@ function Map(props) {
             <MapGL {...viewport}
                 mapStyle={'mapbox://styles/mapbox/' + mapStyle + '-v10'} onViewportChange={(viewport => setViewport(viewport))}
                 onHover={event => onHover(setTooltipsPosition, setHoveredFeature, event)}
-                onClick={event => onMapClick(setViewport, setClickedFeature, setClickedSource, event)}
+                onClick={event => onMapClick(setViewport, setClickedFeature, setClickedSource ,event)}
                 mapboxApiAccessToken="pk.eyJ1IjoiYm90cmVsIiwiYSI6ImNrM2Z5ODVxdzA5N3YzY3FjajcwcmloM2UifQ.rYqepC72dc2DxKTLLPCPgQ"
 
             >
@@ -218,11 +226,11 @@ function Map(props) {
                 {
                     (clickedFeature && clickedLayer && clickedSource) && mapMarker && mapMarker.length  &&
                     mapMarker.map((elem, index) => {
-                        return (
-                            <Marker key={index} latitude={parseFloat(elem.geometry.coordinates[1])} longitude={parseFloat(elem.geometry.coordinates[0])} offsetLeft={-20} offsetTop={-10}>
+                            return((elem.properties.codeP===clickedFeature.codePostal) &&
+                            <Marker key={index} latitude={parseFloat(elem.geometry.coordinates[1])} longitude={parseFloat(elem.geometry.coordinates[0])} >
                             <img src={markerIcon} onClick={() => onMarkerClick(elem)} alt="Here is a marker" height="24px" width="24px"/>
-                    </Marker>
-                        )
+                    </Marker>)
+                        
                     })
                 }
                 
