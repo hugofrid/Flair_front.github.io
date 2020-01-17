@@ -4,13 +4,14 @@ import './App.css';
 
 
 function App() {
+
   return (
     <div className="app">
       <div className="navBar">
 
       </div>
       <div className="mapArea">
-         <Map></Map>
+        <Map ></Map>
       </div>
     </div>
   );

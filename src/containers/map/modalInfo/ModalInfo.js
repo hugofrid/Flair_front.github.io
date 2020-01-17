@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ModalInfo.css'
 import { capitalize } from '../../../pipes/stringpipe.js'
 import GaugeChart from 'react-gauge-chart';
@@ -8,10 +8,15 @@ import { closeIcon } from '../../../icons/icons.js'
 
 function ModalInfo(props) {
 
+    const closeInfo = () => {
+        props.setClickedFeature(null);
+        props.setClickedSource(null);
+    }
+
     return (
         <div className="modalInfo">
 
-            <IconBtn className="closeIcon" icon={closeIcon} onClick={() => props.onClose()}/>
+            <IconBtn className="closeIcon" icon={closeIcon} onClick={closeInfo} alt="close"/>
             <div className="titleCity">{capitalize(props.feature.city_name)}</div>
             <div className="subInfo">Population : {props.feature.population}</div>
 
