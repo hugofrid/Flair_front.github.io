@@ -11,7 +11,7 @@ import ModalInfo from "./modalInfo/ModalInfo.js";
 import MarkerInfo from "./markerInfo/MarkerInfo.js";
 import IconBtn from '../../componants/iconBtn/iconBtn.js';
 
-import { locationIcon, plusIcon, minusIcon, sunIcon, moonIcon, markerIcon } from '../../icons/icons.js'
+import { locationIcon, plusIcon, minusIcon, sunIcon, moonIcon, markerIcon, selectedMarkerIcon } from '../../icons/icons.js'
 
 import getApiSet from '../../services/apiServices.js'
 import getDataSet from '../../services/dataServices.js';
@@ -29,6 +29,8 @@ function Map(props) {
             setMapLayer(newLayer);
         }
     }
+
+    
 
 
     /**useEffect(() => {
@@ -165,6 +167,7 @@ function Map(props) {
 
 
     const [clickedMarker, setClickedMarker] = useState(null);
+    const [selected, setSelected] = useState(null);
     const onMarkerClick = (elem) => {
         console.log(elem)
         console.log(elem.properties.title)
@@ -174,6 +177,7 @@ function Map(props) {
 
     const closeMarkerInfo = () => {
         setClickedMarker(null);
+        setSelected(null)
     }
 
     useEffect(() => {
@@ -228,7 +232,16 @@ function Map(props) {
                     mapMarker.map((elem, index) => {
                             return((elem.properties.codeP===clickedFeature.codePostal) &&
                             <Marker key={index} latitude={parseFloat(elem.geometry.coordinates[1])} longitude={parseFloat(elem.geometry.coordinates[0])} >
-                            <img src={markerIcon} onClick={() => onMarkerClick(elem)} alt="Here is a marker" height="24px" width="24px"/>
+                            {(selected === index && elem.properties.codeP===clickedMarker.properties.codeP) ? <img src={selectedMarkerIcon} onClick={() => {
+                                    onMarkerClick(elem,index)
+                                    setSelected(null)
+                                    closeMarkerInfo()
+                            }} alt="Here is a marker" height="24px" width="24px"/> : <img src={markerIcon} onClick={() => {
+                                onMarkerClick(elem)
+                                setSelected(index)
+                                }} alt="Here is a marker" height="24px" width="24px"/>
+                            }
+                            
                     </Marker>)
                         
                     })
