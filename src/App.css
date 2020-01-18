@@ -1,16 +1,47 @@
-.app{
+
+
+html {
+  color: rgb(61, 59, 57);
+  background-color: white;
+}
+.app {
   display: flex;
+  width: 100vw;
+  height: 100vh;
   flex-direction: column;
-  width:100vw;
-  height:100vh;
-
-}
-.navBar{
-  height:1rem;
-  background:orange;
 }
 
-.mapArea{
+.head {
+  height: 75px;
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(rgb(241, 219, 17), coral);
+}
+
+.title {
+  text-align: center;
   flex:1;
-  background:black;
+  font-size: 25px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 700;
+  margin-top: 20px;
+  color: white;
+}
+
+.sizeLogo {
+  height: 100%;
+  width: 150px;
+
+}
+
+footer {
+  height: 20px;
+  margin-right: 5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: right;
+
+}
+
+.accueil {
+  flex: 1;
 }

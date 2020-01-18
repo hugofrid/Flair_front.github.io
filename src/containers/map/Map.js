@@ -8,6 +8,14 @@ import ModalInfo from "./modalInfo/ModalInfo.js";
 import IconBtn from '../../componants/iconBtn/iconBtn.js';
 import { locationIcon, plusIcon, minusIcon, sunIcon, moonIcon } from '../../icons/icons.js'
 import getDataSet from '../../services/dataServices.js'
+import Accueil from "../accueil/Accueil.js";
+import Search from "../../componants/search/Search.js";
+
+import {
+    Route,
+    NavLink,
+    HashRouter
+  } from "react-router-dom";
 
 
 function Map(props) {
@@ -177,17 +185,24 @@ function Map(props) {
     }
 
     return (
+
+        <div>
+        <body>
+
+        <header className="search">
+        <Search></Search>
+        </header>
+
         <div className="mapContainer">
             {(clickedFeature && clickedLayer && clickedSource) && <ModalInfo onClose={closeInfo} feature={clickedFeature} />}
-           
+        
             <div className="buttons">
                 
                 <IconBtn onClick={toggleMode} icon={mapStyle === 'light' ? moonIcon : sunIcon} alt='switch mode'/>
                 <IconBtn onClick={() => zoom('+')} icon={plusIcon} alt='Zomm +' />
                 <IconBtn onClick={() => zoom('-')} icon={minusIcon} alt='Zomm -' />
                 <IconBtn onClick={goToUserLocation} icon={locationIcon} alt='go to my location' />
-                
-                
+
             </div>
 
             <MapGL {...viewport}
@@ -214,6 +229,8 @@ function Map(props) {
                 {hoveredFeature && <Tooltips feature={hoveredFeature.properties} tooltipsPosition={tooltipsPosition}></Tooltips>}
 
             </MapGL>
+        </div>
+        </body>
         </div>
     )
 }

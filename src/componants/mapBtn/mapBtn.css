@@ -1,0 +1,15 @@
+.btn {
+    color: white;
+    background: rgb(61, 59, 57);
+    border-color: rgb(61, 59, 57);
+    border-radius: 5px;
+    margin-bottom: 5px;
+  
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  cursor: pointer;
+  
+  }

@@ -1,0 +1,40 @@
+.App {
+    text-align: center;
+    margin-top: 100px;
+  }
+ 
+.ban {
+  background-color: rgb(170, 166, 166);
+  height: 100px;
+  margin-left: 75px;
+  margin-right: 75px;
+  
+}
+
+.sousBan {
+  background-color: rgb(238, 178, 66);
+  height: 10px;
+  margin-left: 75px;
+  margin-right: 75px;
+}
+
+  h2 {
+    text-align: left;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 50px;
+  }
+
+  .obj {
+    font-size: 20px;
+  }
+  .objec {
+    margin-top: 100px;
+  }
+  
+  .description {
+    text-align: left;
+    font-style: initial;    
+    margin-left: 100px;
+    margin-right: 100px;
+  }

@@ -1,0 +1,45 @@
+.help {
+  display: flex;
+  flex-direction: row;
+}
+
+.linkDiv {
+  height: 320px;
+}
+
+.link {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+
+.text {
+  display: none;
+  width: 375px;
+  font-size: 16px;
+  height: 270px;
+  margin-top: 20px;
+  margin-left: 10px;
+  background-color: rgb(206, 212, 214);
+  border-radius: 10px;
+}
+
+.textInt {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.link:hover + .text {
+  display: block;
+}
+
+.rouge {
+  color: rgb(199, 38, 38);
+}
+
+.vert {
+  color: green;
+}
+.endLine {
+  text-align: center;
+}
