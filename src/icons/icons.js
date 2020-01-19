@@ -5,6 +5,7 @@ import _sunIcon from './sun.png'
 import _locationIcon from './location.png'
 import _settignsIcon from './settings.png'
 import _closeIcon from './close.png'
+import _checkIcon from './check.png'
 
 import _markerIcon from './marker.png'
 import _selectedMarkerIcon from './selectedMarker.png'
@@ -24,7 +25,7 @@ export const sunIcon = _sunIcon;
 export const locationIcon = _locationIcon;
 export const settignsIcon = _settignsIcon;
 export const closeIcon = _closeIcon; 
-
+export const checkIcon = _checkIcon; 
 export const markerIcon = _markerIcon; 
 export const selectedMarkerIcon = _selectedMarkerIcon; 
 

@@ -37,7 +37,7 @@ function Map(props) {
     //NE PAS SUPPRIMER
     //const fetchApiData =  async (a,b,c,d,e,f,g) => {
     const fetchApiData = async () => {
-        if (clickedFeature && clickedFeature.codePostal) {
+        if (clickedFeature && clickedFeature.codePostal && showHousing) {
             const res = await getApiSet(clickedFeature.codePostal);
             //NE PAS SUPPRIMER
             //const res = await  getApiSet(a,b,c,d,e,f,g);
@@ -164,6 +164,41 @@ function Map(props) {
 
 
     useEffect(() => {
+        setLayer({
+            id: 'data',
+            source: 'mainMap',
+            type: 'fill',
+            paint: {
+                'fill-color': [
+                    'interpolate',
+                    ["linear"],
+                    ['get', displayedInfo],
+                    0,
+                    '#ef2917',
+                    1,
+                    '#ed4a00',
+                    2,
+                    '#e86400',
+                    3,
+                    '#de7c00',
+                    4,
+                    '#d09100',
+                    5,
+                    '#bfa500',
+                    6,
+                    '#a9b700',
+                    7,
+                    '#8dc800',
+                    8,
+                    '#67d800',
+                    9,
+                    '#01e70b'
+                ],
+                'fill-opacity': 0.5
+            }
+        })
+    },[displayedInfo])
+    useEffect(() => {
 
         fetchMapData();
     }, [props])
@@ -173,6 +208,11 @@ function Map(props) {
         fetchApiData();
     }, [clickedFeature])
 
+    useEffect(() => {
+        if (showHousing) {
+           fetchApiData()
+       }
+    },[showHousing])
 
     return (
         <div className="mapContainer">
@@ -188,7 +228,7 @@ function Map(props) {
             {(clickedMarker && clickedFeature && clickedMarker.properties.codeP == clickedFeature.codePostal) && <MarkerInfo onClose={closeMarkerInfo} feature={clickedMarker} />}
 
             <div className="settingsPart">
-                <MapSettings mapStyle={mapStyle} displayedInfo={displayedInfo} setDisplayedInfo={setDisplayedInfo} setMapStyle={setMapStyle} showHousing={showHousing} setShowHousing={setShowHousing}></MapSettings>
+                <MapSettings mapStyle={mapStyle} displayedInfo={displayedInfo} setDisplayedInfo={value => setDisplayedInfo(value)} setMapStyle={value => setMapStyle(value)} showHousing={showHousing} setShowHousing={value => setShowHousing(value)}></MapSettings>
             </div>
 
             <div className="buttons">
@@ -213,7 +253,7 @@ function Map(props) {
 
 
                 {
-                    (clickedFeature && clickedLayer && clickedSource) && mapMarker && mapMarker.length &&
+                    (clickedFeature && clickedLayer && clickedSource) && mapMarker && mapMarker.length && showHousing &&
                     mapMarker.map((elem, index) => {
                         return ((elem.properties.codeP === clickedFeature.codePostal) &&
                             <Marker key={index} latitude={parseFloat(elem.geometry.coordinates[1])} longitude={parseFloat(elem.geometry.coordinates[0])} >
