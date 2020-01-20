@@ -222,8 +222,9 @@ function Map(props) {
                     <ModalInfo setClickedFeature={setClickedFeature} setClickedSource={setClickedSource} feature={clickedFeature}
                         displayedInfo={displayedInfo}
                     />}
+                  {(clickedMarker && clickedFeature && clickedMarker.properties.codeP == clickedFeature.codePostal) && <MarkerInfo onClose={closeMarkerInfo} feature={clickedMarker} />}
             </div>
-            {(clickedMarker && clickedFeature && clickedMarker.properties.codeP == clickedFeature.codePostal) && <MarkerInfo onClose={closeMarkerInfo} feature={clickedMarker} />}
+          
 
             <div className="settingsPart">
                 <MapSettings mapStyle={mapStyle} displayedInfo={displayedInfo} setDisplayedInfo={value => setDisplayedInfo(value)} setMapStyle={value => setMapStyle(value)} showHousing={showHousing} setShowHousing={value => setShowHousing(value)}></MapSettings>

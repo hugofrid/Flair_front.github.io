@@ -1,45 +1,59 @@
 .markerInfo{
-    position:absolute;
-    top:1.5rem;
-    left:1.5rem;;
-    padding:1rem;
     background:rgba(255,255,255,0.8);
     display:flex;
     flex-direction: column;
     width:300px;
-    height:auto;
+    position: relative;
+    height: 175px;
     z-index: 10;
     border-radius: 15px;
-
 }
 
 .closeIcon{
     position:absolute;
     top:5px;
     right: 5px;
-
 }
 
-.titleCity{
-    text-align: center;
-    font-size: 1.5rem;
-    padding: 0 2rem;
-
-
+.infos{
+    display: flex;
+    width:100%;
+     padding:1rem;
 }
 
-.subInfo{
-    text-align: center;
-    font-size:0.8rem;
-    margin-bottom:2rem;
+.pictureArea{
+    width: 75px;
+    height:75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.subImg{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.picture{
+    max-width:100%;
+    height: auto;
 }
 
+.infoArea{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title{
+    white-space: nowrap;
+    font-size: 1.6rem;
+}
+.housingUrl{
+    width: 24px;
+    height:24px;
+}
+.houseInfo{
+    display: flex;
+    justify-content: space-between;
+
+}
 
 
 

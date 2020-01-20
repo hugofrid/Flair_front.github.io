@@ -13,10 +13,14 @@ import _selectedMarkerIcon from './selectedMarker.png'
 import _listIcon from './list.png'
 import _sortAscIcon from './sort-ascending.png'
 import _sortDscIcon from './sort-descending.png'
+import _housingIcon from './housing.png'
+
+import _foreignIcon from './foreign.png'
 
 
 
-
+export const housingIcon = _housingIcon;
+export const foreignIcon = _foreignIcon;
 
 export const minusIcon = _minusIcon;
 export const plusIcon = _plusIcon;
