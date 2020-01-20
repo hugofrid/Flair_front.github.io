@@ -18,31 +18,34 @@ function CityList(props) {
 
     const sortFeatures = (featureList) => {
 
-        let list = [];
-        featureList.map(elem => {
-            if (!list[elem.properties.estimation5]) {
-                list[elem.properties.estimation5] = []
+        if (featureList) {
+            let list = [];
+            featureList.map(elem => {
+                if (!list[elem.properties[props.displayedInfo]]) {
+                    list[elem.properties[props.displayedInfo]] = []
+                }
+                list[elem.properties[props.displayedInfo]].push(elem)
+
+            })
+            list.forEach(elem => elem.sort(sortByCityName));
+            let arrayList;
+            if (orderList === '-') {
+                arrayList = list.reduce((accumulator, object) => accumulator = [...accumulator, ...object])
             }
-            list[elem.properties.estimation5].push(elem)
+            if (orderList === '+') {
 
-        })
-        list.forEach(elem => elem.sort(sortByCityName));
-        let arrayList;
-        if (orderList === '-') {
-            arrayList = list.reduce((accumulator, object) => accumulator = [...accumulator, ...object])
+                arrayList = list.reverse().reduce((accumulator, object) => accumulator = [...accumulator, ...object])
+            }
+            return arrayList;
         }
-        if (orderList === '+') {
 
-            arrayList = list.reverse().reduce((accumulator, object) => accumulator = [...accumulator, ...object])
-        }
-        return arrayList;
     }
 
 
     const [isOpen, setIsOpen] = useState(false);
     const [loadLimite, setLoadLimite] = useState(100);
     const [orderList, setOrderList] = useState("+");
-  
+
 
     useEffect(() => { setFeatureList(sortFeatures(props.features)) }, [orderList])
 
@@ -73,21 +76,21 @@ function CityList(props) {
 
                             featureList.slice(0, loadLimite).map((elem, index) =>
 
-                                <div className={"city " + ((elem.properties === props.activeFeature) ? "selected" :"")}key={index}
+                                <div className={"city " + ((elem.properties === props.activeFeature) ? "selected" : "")} key={index}
                                     onClick={() => {
                                         props.onClickFeature(elem, index);
-                                      
+
                                     }}
 
                                 >
                                     <div className="cityName">  {capitalize(elem.properties.city_name)}  - {elem.properties.codePostal}</div>
                                     <div >
-                                        <JaugeBar colors={colors} point={elem.properties.estimation5} ></JaugeBar>
+                                        <JaugeBar colors={colors} point={elem.properties[props.displayedInfo]} ></JaugeBar>
                                     </div>
                                 </div>)
 
                         }
-                        <div  className="showMore" onClick={() => setLoadLimite(loadLimite + 100)}>show moreeeeee</div>
+                        <div className="showMore" onClick={() => setLoadLimite(loadLimite + 100)}>show moreeeeee</div>
                     </div>
                 </div>
             }

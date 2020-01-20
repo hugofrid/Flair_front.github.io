@@ -1,0 +1,60 @@
+
+
+.toggleButtonComponant{
+    width:100%;
+    display: flex;
+    cursor:pointer;
+
+}
+.toggleButtonLabel{
+    flex:1;
+    align-self: center;
+}
+.toggleButton{
+    position: relative;
+    box-sizing: border-box;
+    width: 42px;
+    height: 24px;
+    background: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.toggleButton.checked {
+    border: 1px solid black;
+    background: lightgray;
+
+    transition: 0.2s;
+}
+
+.toggleButton.unchecked {
+    border: 1px solid grey;
+
+    transition: 0.2s;
+
+}
+
+
+.checkToggle {
+    transition:0.2s;
+    width:20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.toggleButton.unchecked .checkToggle{
+    background: grey;
+    left:1px;   
+    transition:0.2s;
+
+}
+
+.toggleButton.checked .checkToggle{
+    background: black;
+    left:19px;
+    transition:0.2s;
+
+}

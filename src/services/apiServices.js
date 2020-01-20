@@ -8,7 +8,7 @@ async function getApiSet(x) {
       return result.data
       });
 
-      console.log(data.results);
+     // console.log(data.results);
       return (data.results);
 }
 export default getApiSet;

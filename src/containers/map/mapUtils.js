@@ -12,7 +12,7 @@ export const zoom = (viewport, setViewport, dir) => {
             width: "100%",
             latitude: viewport.latitude,
             longitude: viewport.longitude,
-            transitionDuration: 500,
+            transitionDuration: 1500,
             transitionInterpolator: new FlyToInterpolator(),
             zoom: viewport.zoom + 1
         }
@@ -24,7 +24,7 @@ export const zoom = (viewport, setViewport, dir) => {
             width: "100%",
             latitude: viewport.latitude,
             longitude:viewport.longitude,
-            transitionDuration: 500,
+            transitionDuration: 1500,
             transitionInterpolator: new FlyToInterpolator(),
             zoom: viewport.zoom - 1 
          }
@@ -99,7 +99,7 @@ export const goToUserLocation = (viewport,setViewport) => {
             width: "100%",
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
-            transitionDuration: 500,
+            transitionDuration: 1500,
             transitionInterpolator: new FlyToInterpolator(),
             zoom: 11
         }
