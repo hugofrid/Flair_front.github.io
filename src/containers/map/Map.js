@@ -37,12 +37,14 @@ function Map(props) {
     //NE PAS SUPPRIMER
     //const fetchApiData =  async (a,b,c,d,e,f,g) => {
     const fetchApiData = async () => {
-        if (clickedFeature && clickedFeature.codePostal && showHousing) {
+    
+        if (clickedFeature && clickedFeature.codePostal) {
+
             const res = await getApiSet(clickedFeature.codePostal);
+
             //NE PAS SUPPRIMER
             //const res = await  getApiSet(a,b,c,d,e,f,g);
 
-            //console.log("nombre de résultats : " + res.length);
             let geoData = {
                 "type": "FeatureCollection",
                 "features": []
@@ -74,7 +76,6 @@ function Map(props) {
             //console.log(geoData.features);
             // jsonContent  = await  JSON.stringify(geoData);
             setMapMarker(await geoData.features);
-            //console.log(mapMarker,geoData.features);
 
             //console.log(jsonContent)
         }
@@ -204,15 +205,12 @@ function Map(props) {
     }, [props])
 
     useEffect(() => {
-
-        fetchApiData();
-    }, [clickedFeature])
-
-    useEffect(() => {
         if (showHousing) {
-           fetchApiData()
-       }
-    },[showHousing])
+            fetchApiData()
+        }
+
+    }, [showHousing,clickedFeature])
+
 
     return (
         <div className="mapContainer">
