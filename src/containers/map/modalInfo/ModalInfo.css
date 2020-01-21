@@ -6,19 +6,13 @@
     flex-direction: column;
     width:300px;
     flex:1;
-    margin-top: 5px;
+    margin-top: 1rem;
     max-height: 40%;
     z-index: 10;
     border-radius: 15px;
 
 }
 
-.closeIcon{
-    position:absolute;
-    top:5px;
-    right: 5px;
-
-}
 
 .titleCity{
     text-align: center;

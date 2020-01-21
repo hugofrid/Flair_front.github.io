@@ -1,45 +1,76 @@
-.markerInfo{
-    position:absolute;
-    top:1.5rem;
-    left:1.5rem;;
-    padding:1rem;
-    background:rgba(255,255,255,0.8);
-    display:flex;
-    flex-direction: column;
-    width:300px;
-    height:auto;
-    z-index: 10;
-    border-radius: 15px;
+.markerInfo {
+  transition: 1s;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+  width:100%;
+  border-radius: 15px;
+  margin-top:1rem;
+  left:0;
+}
+
+.markerInfo.movedLeft{
+    position: absolute;
+    left:-105%;
+    bottom: 0;
 
 }
 
-.closeIcon{
-    position:absolute;
-    top:5px;
-    right: 5px;
-
+.infos {
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
 }
 
-.titleCity{
-    text-align: center;
-    font-size: 1.5rem;
-    padding: 0 2rem;
-
-
+.pictureArea {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.subInfo{
-    text-align: center;
-    font-size:0.8rem;
-    margin-bottom:2rem;
+.picture {
+  max-width: 100%;
+  height: auto;
 }
 
-.subImg{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.infoArea {
+  flex: 1;
+  display: flex;
 }
 
+.title {
+  white-space: nowrap;
+  font-size: 1.4rem;
+}
+.housingUrl {
+display: flex;
+cursor: pointer;
+justify-content: flex-end;
+text-decoration: none;
 
+}
+.foreignLogo{
+    width: 24px;
+    margin: 0 0 0 .5rem;
+}
+.aganceSite{
+    align-self: center;
 
+    color:black;
+}
+
+.housingUrl:hover .aganceSite{
+    text-decoration: underline black;
+}
+
+.houseInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 0 0 0.5rem ;
+}
 

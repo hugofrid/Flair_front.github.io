@@ -16,7 +16,8 @@ function ModalInfo(props) {
     return (
         <div className="modalInfo">
 
-            <IconBtn className="closeIcon" icon={closeIcon} onClick={closeInfo} alt="close"/>
+            <IconBtn className="closeIcon" icon={closeIcon} onClick={closeInfo} alt="close" />
+            
             <div className="titleCity">{capitalize(props.feature.city_name)}</div>
             <div className="subInfo">Population : {props.feature.population}</div>
 
