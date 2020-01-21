@@ -42,7 +42,6 @@ function CityList(props) {
     }
 
 
-    const [isOpen, setIsOpen] = useState(false);
     const [loadLimite, setLoadLimite] = useState(100);
     const [orderList, setOrderList] = useState("+");
 
@@ -53,17 +52,17 @@ function CityList(props) {
 
 
     const reduceList = () => {
-        setIsOpen(!isOpen);
+        props.setShowCityList(!props.showCityList);
     }
 
     const colors = '#ef2917,#ed4a00,#e86400,#de7c00,#d09100,#bfa500, #a9b700,#8dc800, #67d800, #01e70b'
     return (
-        <div className={"listComponent " + (isOpen ? "isOpen" : "")}>
+        <div className={"listComponent " + (props.showCityList ? "isOpen" : "")}>
 
-            <IconBtn className="toggleIcon" icon={isOpen ? closeIcon : listIcon} onClick={reduceList}></IconBtn>
+            <IconBtn className={("toggleIcon ") + (props.showCityList && "closeIcon") } icon={props.showCityList ? closeIcon : listIcon} onClick={reduceList}></IconBtn>
 
 
-            {isOpen && featureList && featureList.length && loadLimite &&
+            {props.showCityList && featureList && featureList.length && loadLimite &&
                 <div className="visibleList">
 
                     <IconBtn className="listOrder" icon={orderList === "+" ? sortDscIcon : sortAscIcon} onClick={() => orderList === "+" ? setOrderList("-") : setOrderList("+")}></IconBtn>

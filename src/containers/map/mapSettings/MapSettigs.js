@@ -19,7 +19,7 @@ function MapSettings(props) {
         <div className={"settingsComponent " + (isOpen ? "isOpen" : "")}>
 
             
-            <IconBtn className="settingsIcon" icon={isOpen ? closeIcon : settignsIcon} onClick={closeSettings}></IconBtn>
+            <IconBtn className={!isOpen ? "settingsIcon" : "closeIcon"} icon={isOpen ? closeIcon : settignsIcon} onClick={closeSettings}></IconBtn>
             {isOpen && 
                 <div className="settings">
                 <div className="title">Réglages</div>

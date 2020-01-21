@@ -1,6 +1,7 @@
-import React from 'react';
 import {FlyToInterpolator} from 'react-map-gl'
 import bbox from '@turf/bbox';
+import {getApiSet,getDataSet} from '../../services/frontServices.js'
+
 
 
 
@@ -123,4 +124,58 @@ export const onHover = (setTooltipsPosition,setHoveredFeature,event) => {
 
 export  const updateViewport = (viewport,setViewport) => {
     setViewport(viewport);
-  };
+};
+  
+export const fetchApiData = async (clickedFeature, setMapMarker) => {
+    
+    if (clickedFeature && clickedFeature.codePostal) {
+
+        const res = await getApiSet(clickedFeature.codePostal);
+
+        //NE PAS SUPPRIMER
+        //const res = await  getApiSet(a,b,c,d,e,f,g);
+
+        let geoData = {
+            "type": "FeatureCollection",
+            "features": []
+        }
+        res.map(elem => {
+            let feature = {
+                "type": 'Feature',
+                "geometry": {
+                    "type": 'Point',
+                    "coordinates": [elem.localization.lng, elem.localization.lat],
+                },
+                "properties": {
+                    "title": elem.title,
+                    "text": elem.text,
+                    "nbRooms": parseInt(elem.nb_rooms),
+                    "price": parseInt(elem.price),
+                    "surface": parseInt(elem.surface),
+                    "type": elem.type.name,
+                    "city": elem.localization.city,
+                    "url": elem.url,
+                    "photo": elem.photos[0],
+                    "codeP": elem.localization.zip_code
+                }
+            }
+            geoData.features.push(feature);
+        })
+
+
+        //console.log(geoData.features);
+        // jsonContent  = await  JSON.stringify(geoData);
+        setMapMarker(await geoData.features);
+
+        //console.log(jsonContent)
+    }
+}
+
+export  const fetchMapData = async (setMapLayer) => {
+    let res = await getDataSet();
+    if (res) {
+        const newLayer = await JSON.parse(res)
+        console.log(newLayer)
+        setMapLayer(await newLayer);
+    }
+}
