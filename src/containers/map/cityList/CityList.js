@@ -4,6 +4,7 @@ import { capitalize } from '../../../pipes/stringpipe.js'
 import IconBtn from '../../../componants/iconBtn/iconBtn.js';
 import { closeIcon, listIcon, sortDscIcon, sortAscIcon } from '../../../icons/icons.js'
 import JaugeBar from '../../../componants/jaugeBar/jaugeBar';
+import SearchInput from '../../../componants/searchInput/SearchInput.js'
 
 
 function CityList(props) {
@@ -46,9 +47,11 @@ function CityList(props) {
     const [orderList, setOrderList] = useState("+");
 
 
-    useEffect(() => { setFeatureList(sortFeatures(props.features)) }, [orderList])
+    useEffect(() => { setFilteredList(sortFeatures(filteredList)) }, [orderList])
 
     const [featureList, setFeatureList] = useState(sortFeatures(props.features));
+    const [filteredList, setFilteredList] = useState(featureList);
+
 
 
     const reduceList = () => {
@@ -59,21 +62,22 @@ function CityList(props) {
     return (
         <div className={"listComponent " + (props.showCityList ? "isOpen" : "")}>
 
-            <IconBtn className={("toggleIcon ") + (props.showCityList && "closeIcon") } icon={props.showCityList ? closeIcon : listIcon} onClick={reduceList}></IconBtn>
+            <IconBtn className={("toggleIcon ") + (props.showCityList && "closeIcon")} icon={props.showCityList ? closeIcon : listIcon} onClick={reduceList}></IconBtn>
 
 
             {props.showCityList && featureList && featureList.length && loadLimite &&
                 <div className="visibleList">
 
+
                     <IconBtn className="listOrder" icon={orderList === "+" ? sortDscIcon : sortAscIcon} onClick={() => orderList === "+" ? setOrderList("-") : setOrderList("+")}></IconBtn>
+
+                    <SearchInput arraySource={featureList} returnedArray={(elem) => setFilteredList(elem)}></SearchInput>
+
+
                     <div className="list">
-
-                        <div className="listOption">
-
-                        </div>
                         {
 
-                            featureList.slice(0, loadLimite).map((elem, index) =>
+                            filteredList.slice(0, loadLimite).map((elem, index) =>
 
                                 <div className={"city " + ((elem.properties === props.activeFeature) ? "selected" : "")} key={index}
                                     onClick={() => {
@@ -88,8 +92,8 @@ function CityList(props) {
                                     </div>
                                 </div>)
 
-                        }
-                        <div className="showMore" onClick={() => setLoadLimite(loadLimite + 100)}>show moreeeeee</div>
+                        }{(loadLimite <= filteredList.length) &&
+                            <div className="showMore" onClick={() => setLoadLimite(loadLimite + 100)}>voir plus </div>}
                     </div>
                 </div>
             }

@@ -1,0 +1,48 @@
+
+@import '../../flairColors.scss';
+
+.flairBtn{
+    border-radius: 8px;
+    max-width:20rem;
+    font-size: 1.2rem;
+    min-width:140px;
+    font-weight: 700;
+    height:2rem;
+    border:none;
+    cursor: pointer;
+
+}
+
+.flairBtn.disabled{
+
+    background:none;
+    box-sizing: border-box;
+    cursor: unset;
+    border:solid 3px gray;
+    color:gray;
+}
+
+.flairBtn.primary{
+    background: $primaryColor;
+    box-shadow: 6px 6px 12px $primaryColor;
+    border: 2px solid $primaryColor_bis ;
+    color:$primaryColor_text;
+
+    
+}
+.flairBtn.primary:hover{
+    background:white;
+    border: 3px solid $primaryColor_bis;
+    box-shadow: 6px 6px 12px $primaryColor;
+    color:$primaryColor;
+}
+.flairBtn.secondary{
+border: 3px solid $secondaryColor;
+color: $secondaryColor;
+background: white;
+box-shadow: 6px 6px 12px $secondaryColor;
+}
+.flairBtn.secondary:hover{
+  
+    background: $secondaryColor_bis;
+  }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import MapGL, { Source, Layer, FlyToInterpolator, Marker } from 'react-map-gl';
-import { zoom, onMapClick, goToUserLocation, onHover, zoomToFeature,fetchApiData ,fetchMapData} from './mapUtils'
+import { zoom, onMapClick, goToUserLocation, onHover, zoomToFeature,fetchApiData ,fetchMapData } from './mapUtils'
 import {mapStyleLayer, selectedAreastyle} from './mapStyle.js'
 
 import './Map.css'
@@ -60,11 +60,14 @@ function Map(props) {
     }
     useEffect(() => {
         setLayer(mapStyleLayer(displayedInfo))
-    },[displayedInfo])
+    }, [displayedInfo])
+    
     useEffect(() => {
 
         fetchMapData(setMapLayer);
     }, [props])
+
+ 
 
     useEffect(() => {
         if (showHousing) {
@@ -76,11 +79,12 @@ function Map(props) {
     }, [showHousing,clickedFeature])
 
 
+    
     return (
         <div className="mapContainer">
             <div className="rightOptions">
                 {mapLayer && <CityList features={mapLayer.features} onClickFeature={feat => { zoomToFeature(feat, setViewport, setClickedFeature, setClickedSource) }} activeFeature={clickedFeature || null}
-                    displayedInfo={displayedInfo} showCityList={showCityList} setShowCityList={elem => setShowCityList(elem)}></CityList>}
+                    displayedInfo={displayedInfo} showCityList={showCityList} setShowCityList={(elem) => setShowCityList(elem)}></CityList>}
                 {(clickedFeature && clickedLayer && clickedSource) &&
 
                     <ModalInfo setClickedFeature={setClickedFeature} setClickedSource={setClickedSource} feature={clickedFeature}

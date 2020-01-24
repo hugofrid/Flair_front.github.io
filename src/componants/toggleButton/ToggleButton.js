@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './ToggleButton.css';
+import './ToggleButton.scss';
 import { checkIcon } from '../../icons/icons.js'
 
 function ToggleButton(props) { // text , options,  valueChange

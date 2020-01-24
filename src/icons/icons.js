@@ -6,20 +6,27 @@ import _locationIcon from './location.png'
 import _settignsIcon from './settings.png'
 import _closeIcon from './close.png'
 import _checkIcon from './check.png'
-
+import _searchIcon from './search.png'
+import _helpIcon from './help.png'
+import _searchListIcon from './searchList.png'
 import _markerIcon from './marker.png'
 import _selectedMarkerIcon from './selectedMarker.png'
-
 import _listIcon from './list.png'
 import _sortAscIcon from './sort-ascending.png'
 import _sortDscIcon from './sort-descending.png'
 import _housingIcon from './housing.png'
-
 import _foreignIcon from './foreign.png'
+import _flairIcon from './flair.png'
 
 
 
 export const housingIcon = _housingIcon;
+export const flairIcon = _flairIcon;
+
+export const searchIcon = _searchIcon;
+export const searchListIcon = _searchListIcon;
+
+export const helpIcon = _helpIcon;
 export const foreignIcon = _foreignIcon;
 
 export const minusIcon = _minusIcon;

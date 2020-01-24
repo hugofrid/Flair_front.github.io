@@ -1,0 +1,61 @@
+@import '../../flairColors.scss';
+
+.stepContainer{
+    width:100%;
+    height:50px;
+    display: flex;
+    position:relative;
+    justify-content: space-between;
+
+}
+
+
+.progressionBar{
+    width:calc(100% - 28px);
+    align-self: center;
+    margin: 0 14px;
+    height:14px;
+    position: absolute;
+    display: flex;
+    transition:2s;
+}
+
+.fullBar{
+    border-top: solid 12px $primaryColor;
+    transition:.5s;
+
+}
+.dashedBar{
+    border-top: dashed 12px $secondaryColor;   
+    transition:.5s;
+
+}
+
+
+.step{   
+    z-index: 120;
+    width: 28px;
+    height:28px;
+    border-radius: 50%;
+    display: flex;
+    text-align: center;
+    font-size:1.2rem;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border:2px solid  $secondaryColor;
+    color: $secondaryColor;
+    transition:.5s
+
+}
+.step.active{
+    color:$primaryColor_text;
+    background:$primaryColor;
+    border-color:$primaryColor;
+}
+
+.step.passed{
+
+    color:$primaryColor;
+    border-color:$primaryColor;
+}
