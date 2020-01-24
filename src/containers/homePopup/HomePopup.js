@@ -15,14 +15,14 @@ function HomePopup(props) {
   const  StepDescritpion = ()=> {
     switch (step) {
       case 0: {
-        return <p>Flair est une application qui vous permet d'investir à l'aide  d'une carte de l'Île de France en constante mutation. <br/><br/> Elle analyse et trouve pour vous les villes pour lesquelles l’investissement sera le plus rentable.</p>
+        return <p>Flair est une application qui vous permet d'investir à l'aide  d'une carte de l'Île-de-France en constante mutation. <br/><br/> Elle analyse et trouve pour vous les villes pour lesquelles l’investissement sera le plus rentable.</p>
       }
       case 1: {
-        return <p>Les informations que vous trouverez proviennent des données démographiques, des tendances du marché et des futurs projets d’aménagement urbains. <br/> <br/>
-        Ces information passe par notre algorithme, qui calcule pour vous les zones avec les meilleures rentabilité.</p>
+        return <p>Les informations que vous trouverez proviennent des données démographiques, des tendances du marché et des futurs projets d’aménagement urbain. <br/> <br/>
+        Ces informations passent par notre algorithme, qui calcule pour vous les zones avec les meilleures rentabilités.</p>
       }
       case 2: {
-        return <p>Chaque ville possède un pourcentage de rentabilité. Vous pouvez accédez aux informations détaillées par ville pour comprendre plus en profondeur la provenance de nos résultats.<br/><br/> Bon Flairage !</p>
+        return <p>Chaque ville possède un pourcentage de rentabilité. Vous pouvez accéder aux informations détaillées par ville pour comprendre plus en profondeur la provenance de nos résultats.<br/><br/> Bon Flairage !</p>
        
       }
       default: {
@@ -42,7 +42,7 @@ function HomePopup(props) {
           <img className='flairLogo' src={flairIcon}></img>
         </div>
         <Stepper steps={3} activeStep={step}></Stepper>
-        <h2>Bienvenu sur Flair !</h2>
+        <h2>Bienvenue sur Flair !</h2>
 
         <div className="description">
           <StepDescritpion />
@@ -55,7 +55,7 @@ function HomePopup(props) {
 
 
         <div className="prevention">
-          Prévention car prévision dans un astérisque en bas !! Notre outil vous aiguille mais puisqu’il s’agit de prédiction et malgré la forte fiabilité de notre algorithme, nous ne pouvons pas garantir 100% de fiabilité
+          Attention : Notre outil vous aiguille mais puisqu’il s’agit de prédictions, et malgré la forte fiabilité de notre algorithme, nous ne pouvons pas garantir 100% de fiabilité.
       </div>
       </div>
 
