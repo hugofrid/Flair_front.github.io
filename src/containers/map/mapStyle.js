@@ -1,5 +1,18 @@
-export const mapStyleLayer =(displayedInfo) => {
-   return  {
+
+
+
+export const colors = ['#E5E3E0', '#E5D0BE', '#D3AF8F', '#DDA16C', '#D68D4D', '#D38037', '#C1681F', '#A34E09', '#68340A', '#442002']
+
+export const mapStyleLayer = (displayedInfo) => {
+    const renderedColor = colors.reduce((acc, e, i) => {
+        if (i === 1) {
+            acc = [0,  acc ,1,e ];
+        }
+        else acc = [...acc ,i, e ];
+        return acc
+    })
+
+    return {
         id: 'data',
         source: 'mainMap',
         type: 'fill',
@@ -8,26 +21,7 @@ export const mapStyleLayer =(displayedInfo) => {
                 'interpolate',
                 ["linear"],
                 ['get', displayedInfo],
-                0,
-                '#ef2917',
-                1,
-                '#ed4a00',
-                2,
-                '#e86400',
-                3,
-                '#de7c00',
-                4,
-                '#d09100',
-                5,
-                '#bfa500',
-                6,
-                '#a9b700',
-                7,
-                '#8dc800',
-                8,
-                '#67d800',
-                9,
-                '#01e70b'
+                ...renderedColor
             ],
             'fill-opacity': 0.5
         }

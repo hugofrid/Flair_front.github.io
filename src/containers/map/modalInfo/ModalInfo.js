@@ -4,6 +4,7 @@ import { capitalize } from '../../../pipes/stringpipe.js'
 import GaugeChart from 'react-gauge-chart';
 import IconBtn from '../../../componants/iconBtn/iconBtn.js';
 import { closeIcon } from '../../../icons/icons.js'
+import { colors } from '../mapStyle';
 
 
 function ModalInfo(props) {
@@ -24,7 +25,7 @@ function ModalInfo(props) {
 
             <GaugeChart id="gauge-chart2"
                 nrOfLevels={9}
-                colors={['#ef2917', '#e86400', '#de7c00', '#d09100', '#bfa500', '#a9b700', '#8dc800', '#67d800', '#01e70b']}
+                colors={colors}
                 percent={(props.feature[props.displayedInfo]) / 9}
                 formatTextValue={() => props.feature[props.displayedInfo] + 1}
                 textColor={'#000000'}

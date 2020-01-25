@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import MapGL, { Source, Layer, FlyToInterpolator, Marker } from 'react-map-gl';
 import { zoom, onMapClick, goToUserLocation, onHover, zoomToFeature,fetchApiData ,fetchMapData } from './mapUtils'
 import {mapStyleLayer, selectedAreastyle} from './mapStyle.js'
-
 import './Map.css'
 import './modalInfo/ModalInfo.js'
 import Tooltips from "./tooltips/Tooltips.js";

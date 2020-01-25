@@ -5,6 +5,7 @@ import IconBtn from '../../../componants/iconBtn/iconBtn.js';
 import { closeIcon, listIcon, sortDscIcon, sortAscIcon } from '../../../icons/icons.js'
 import JaugeBar from '../../../componants/jaugeBar/jaugeBar';
 import SearchInput from '../../../componants/searchInput/SearchInput.js'
+import {colors} from '../mapStyle'
 
 
 function CityList(props) {
@@ -58,7 +59,8 @@ function CityList(props) {
         props.setShowCityList(!props.showCityList);
     }
 
-    const colors = '#ef2917,#ed4a00,#e86400,#de7c00,#d09100,#bfa500, #a9b700,#8dc800, #67d800, #01e70b'
+    const renderedColors = colors.reduce((acc, obj)=> 
+        acc = acc + "," + obj)
     return (
         <div className={"listComponent " + (props.showCityList ? "isOpen" : "")}>
 
@@ -88,7 +90,7 @@ function CityList(props) {
                                 >
                                     <div className="cityName">  {capitalize(elem.properties.city_name)}  - {elem.properties.codePostal}</div>
                                     <div >
-                                        <JaugeBar colors={colors} point={elem.properties[props.displayedInfo]} ></JaugeBar>
+                                        <JaugeBar colors={renderedColors} point={elem.properties[props.displayedInfo]} ></JaugeBar>
                                     </div>
                                 </div>)
 

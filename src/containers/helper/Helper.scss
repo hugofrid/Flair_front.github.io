@@ -1,0 +1,43 @@
+.helpIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.helper{
+    position: relative;
+}
+
+.textInt {
+    display: none;
+    z-index: 10000;
+  width: 300px;
+  margin-right: 5px;
+  margin-left: 5px;
+  position: absolute;
+  top: 110%;
+  right:0;
+  background: darkslategrey;
+  color:white;
+  padding: 1.5rem;
+border-radius: 15px;
+
+}
+
+.helper:hover .textInt{
+    display: block;
+}
+
+.link:hover + .text {
+  display: block;
+}
+
+.rouge {
+  color: rgb(199, 38, 38);
+}
+
+.vert {
+  color: green;
+}
+.endLine {
+  text-align: center;
+}
