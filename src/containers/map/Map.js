@@ -29,7 +29,6 @@ function Map(props) {
     const [nbRooms, setNbRooms] = useState(0);
     const [surface, setSurface] = useState({min:0,max:301});
     const [price, setPrice] = useState({ min: 50, max:10000});
-    const [surfaceLim, setSurfaceLim] = useState({min:0,max:301});
     //NE PAS SUPPRIMER
     //const fetchApiData =  async (a,b,c,d,e,f,g) => {
     
