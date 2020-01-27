@@ -101,7 +101,6 @@ function Map(props) {
                     nbRooms={nbRooms} setNbRooms={setNbRooms}
                     surface={surface} setSurface={setSurface}
                     price={price} setPrice={setPrice}
-                    surfaceLim={surfaceLim} setSurfaceLim={setSurfaceLim}
                 ></MapSettings>
             </div>
 

@@ -77,7 +77,8 @@ function MapSettings(props) {
                                         maxValue={301}
                                         value={props.surface}
                                         formatLabel={value => value === 301 ? " >" + 300 + "m" + '\u00b2' : value + "m" + '\u00b2'}
-                                        onChange={v => {
+                                    onChange={v => {
+                                        console.log(v.max);
                                             props.setSurface(v);
                                         }}
                                         onChangeStart={v => {
@@ -87,6 +88,7 @@ function MapSettings(props) {
                                                 props.setSurface(v);
                                             }
                                         }}
+                                        
                                     />
                                 </div>
 
