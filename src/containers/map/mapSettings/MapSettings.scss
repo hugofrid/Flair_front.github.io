@@ -1,0 +1,60 @@
+@import "../../../flairColors.scss";
+
+.title {
+  font-size: 1.4rem;
+  text-decoration: underline;
+  margin-bottom: 1.5rem;
+}
+.settingsComponent {
+  position: relative;
+  transition: 0.3s;
+  width: auto;
+  z-index: 10;
+}
+
+.settingsComponent.isOpen {
+  padding: 1rem;
+  width: 250px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+}
+.section {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.settingsIcon {
+  float: right;
+}
+
+.houssingSetting {
+  display: flex;
+  padding-left: .5rem;
+  padding-right:1rem;
+  flex-direction: column;
+}
+
+
+.rangeArea{
+  height:3rem;
+  margin-top: .5rem;
+}
+
+.input-range__track--active,
+.input-range__slider {
+    background: $primaryColor !important;
+    border-color: $primaryColor !important;
+} 
+
+.input-range__track--background {
+    background: $secondaryColor !important;
+    border-color: $secondaryColor !important;
+} 
+
+.input-range__label{
+  color: $secondaryColor !important;
+}
+.input-range__label--value{
+  display:none;
+}

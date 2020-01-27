@@ -13,7 +13,7 @@ function MarkerInfo(props) {
             <IconBtn className="closeIcon" icon={closeIcon} onClick={() => props.onClose()} alt="close" />
             {props.feature.properties &&
                 <div className="infos">
-                    <div className="title">
+                    <div className="city_name">
                         {capitalize(props.feature.properties.type)} ({props.feature.properties.surface}m&sup2;)
                     </div>
 

@@ -26,6 +26,10 @@ function Map(props) {
     const [displayedInfo, setDisplayedInfo] = useState('estimation5');
     const [showHousing, setShowHousing] = useState(false);
 
+    const [nbRooms, setNbRooms] = useState(0);
+    const [surface, setSurface] = useState({min:0,max:301});
+    const [price, setPrice] = useState({ min: 50, max:10000});
+    const [surfaceLim, setSurfaceLim] = useState({min:0,max:301});
     //NE PAS SUPPRIMER
     //const fetchApiData =  async (a,b,c,d,e,f,g) => {
     
@@ -94,7 +98,12 @@ function Map(props) {
           
 
             <div className="settingsPart">
-                <MapSettings mapStyle={mapStyle} displayedInfo={displayedInfo} setDisplayedInfo={value => setDisplayedInfo(value)} setMapStyle={value => setMapStyle(value)} showHousing={showHousing} setShowHousing={value => setShowHousing(value)}></MapSettings>
+                <MapSettings mapStyle={mapStyle} displayedInfo={displayedInfo} setDisplayedInfo={value => setDisplayedInfo(value)} setMapStyle={value => setMapStyle(value)} showHousing={showHousing} setShowHousing={value => setShowHousing(value)}
+                    nbRooms={nbRooms} setNbRooms={setNbRooms}
+                    surface={surface} setSurface={setSurface}
+                    price={price} setPrice={setPrice}
+                    surfaceLim={surfaceLim} setSurfaceLim={setSurfaceLim}
+                ></MapSettings>
             </div>
 
             <div className="buttons">
