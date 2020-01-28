@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-async function getApiSet(x) {
+/**async function getApiSet(x) {
 
     const data = await axios.get(
       'http://api.gedeon.im/ads?key=xg4oQJjIMtzetP02EbcIiv7FrVT2g7en&transaction=sell&localization=' + x
@@ -11,32 +11,33 @@ async function getApiSet(x) {
      // console.log(data.results);
       return (data.results);
 }
-export default getApiSet;
+export default getApiSet;*/
 
 //NE PAS SUPPRIMER
-/**async function getApiSet(a,b,c,d,e,f,g) {
+async function getApiSet(a,b,c,d,e,f) {
 
+  
   if(b==null){
-    b="house,flat";
+    b=1;
   }
-  if(c==null){
-    c=1;
+  if(c==null || c==1000000){
+    c=10000000;
   }
   if(d==null){
-    d=10000000;
+    d=1;
   }
-  if(e==null){
-    e=1;
+  if(e==null || e==300){
+    e=100000;
   }
   if(f==null){
-    f=100000;
-  }
-  if(g==null){
-    g="1,2,3,4,5";
+    f="1,2,3,4,5";
   }
 
+  //console.log("surf min "+d);
+  //console.log("surf max "+e);
+
   const data = await axios.get(
-    'http://api.gedeon.im/ads?key=xg4oQJjIMtzetP02EbcIiv7FrVT2g7en&transaction=sell&localization=' + a + '&type=' + b + '&min_price=' + c + '&max_price=' + d + '&min_surface=' + e + '&max_surface=' + f + '&rooms=' + g
+    'http://api.gedeon.im/ads?key=xg4oQJjIMtzetP02EbcIiv7FrVT2g7en&transaction=sell&type=house,flat&localization=' + a + '&min_price=' + b + '&max_price=' + c + '&min_surface=' + d + '&max_surface=' + e + '&rooms=' + f
   ).then(result => {
     return result.data
     });
@@ -44,4 +45,4 @@ export default getApiSet;
     console.log(data.results);
     return (data.results);
 }
-export default getApiSet;*/
+export default getApiSet;

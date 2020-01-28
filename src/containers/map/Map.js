@@ -26,8 +26,9 @@ function Map(props) {
     const [displayedInfo, setDisplayedInfo] = useState('estimation5');
     const [showHousing, setShowHousing] = useState(false);
 
-    //NE PAS SUPPRIMER
-    //const fetchApiData =  async (a,b,c,d,e,f,g) => {
+    const [nbRooms, setNbRooms] = useState(0);
+    const [surface, setSurface] = useState({min:0,max:300});
+    const [price, setPrice] = useState({ min: 50, max:1000});
     
 
     const [viewport, setViewport] = useState({
@@ -70,7 +71,7 @@ function Map(props) {
 
     useEffect(() => {
         if (showHousing) {
-            fetchApiData(clickedFeature,setMapMarker)
+            fetchApiData(clickedFeature,price.min,price.max,surface.min,surface.max,nbRooms,setMapMarker)
         } else {
             closeMarkerInfo()
         }
@@ -94,7 +95,11 @@ function Map(props) {
           
 
             <div className="settingsPart">
-                <MapSettings mapStyle={mapStyle} displayedInfo={displayedInfo} setDisplayedInfo={value => setDisplayedInfo(value)} setMapStyle={value => setMapStyle(value)} showHousing={showHousing} setShowHousing={value => setShowHousing(value)}></MapSettings>
+                <MapSettings mapStyle={mapStyle} displayedInfo={displayedInfo} setDisplayedInfo={value => setDisplayedInfo(value)} setMapStyle={value => setMapStyle(value)} showHousing={showHousing} setShowHousing={value => setShowHousing(value)}
+                    nbRooms={nbRooms} setNbRooms={setNbRooms}
+                    surface={surface} setSurface={setSurface}
+                    price={price} setPrice={setPrice} showHousing={showHousing} setMapMarker={setMapMarker} clickedFeature={clickedFeature} closeMarkerInfo={closeMarkerInfo}
+                ></MapSettings>
             </div>
 
             <div className="buttons">

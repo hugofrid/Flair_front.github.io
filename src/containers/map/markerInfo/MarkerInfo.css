@@ -41,9 +41,10 @@
   display: flex;
 }
 
-.title {
+.city_name {
   white-space: nowrap;
   font-size: 1.4rem;
+  text-align: left;
 }
 .housingUrl {
 display: flex;

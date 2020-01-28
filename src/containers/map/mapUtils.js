@@ -126,14 +126,16 @@ export  const updateViewport = (viewport,setViewport) => {
     setViewport(viewport);
 };
   
-export const fetchApiData = async (clickedFeature, setMapMarker) => {
+export const fetchApiData = async (clickedFeature, b,c,d,e,f, setMapMarker) => {
     
     if (clickedFeature && clickedFeature.codePostal) {
 
-        const res = await getApiSet(clickedFeature.codePostal);
+        //const res = await getApiSet(clickedFeature.codePostal);
 
-        //NE PAS SUPPRIMER
-        //const res = await  getApiSet(a,b,c,d,e,f,g);
+        
+        b=b*1000;
+        c=c*1000;
+        const res = await  getApiSet(clickedFeature.codePostal,b,c,d,e,f);
 
         let geoData = {
             "type": "FeatureCollection",
