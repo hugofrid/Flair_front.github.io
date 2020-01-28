@@ -5,7 +5,7 @@ import DropDownSelect from '../../../componants/dropDownSelect/DropDownSelect.js
 import IconBtn from '../../../componants/iconBtn/iconBtn.js';
 import ToggleButton from '../../../componants/toggleButton/ToggleButton';
 import { closeIcon, settignsIcon } from '../../../icons/icons.js';
-import { toggleMode } from '../mapUtils';
+import { toggleMode,fetchApiData } from '../mapUtils';
 import './MapSettings.scss';
 
 function MapSettings(props) {
@@ -20,6 +20,13 @@ function MapSettings(props) {
             return (value / 1000).toFixed(2) + "M €"
         
         } else return value + 'K €'
+    }
+    const setApi = () => {
+        if (props.showHousing) {
+            fetchApiData(props.clickedFeature,props.price.min,props.price.max,props.surface.min,props.surface.max,props.nbRooms,props.setMapMarker)
+        } else {
+            props.closeMarkerInfo()
+        }
     }
 
 
@@ -49,7 +56,7 @@ function MapSettings(props) {
                             <h3>Filtre de recherche :</h3>
                             <div className="houssingSetting">
                                 <div className="housingLabel">
-                                    <span style={{ whiteSpace: "nowrap" }}>Chambres :</span> {props.nbRooms > 0 ? props.nbRooms : '..'}
+                                    <span style={{ whiteSpace: "nowrap" }}>Nombre de pièces :</span> {props.nbRooms > 0 ? props.nbRooms : '..'}
                                 </div>
                                 <div className="rangeArea">
                                     <InputRange className='selectRange' formatLabel={value => {
@@ -59,8 +66,11 @@ function MapSettings(props) {
                                             return value
                                         }
                                     }}
+                                        maxValue={5}
                                         onChange={v => props.setNbRooms(v)}
+                                        onChangeComplete={() =>setApi()}
                                         value={props.nbRooms}
+                                        formatLabel={value => value === 5 ? ">= " + 5 : value }
                                         allowSameValues={true}
                                     />
                                 </div>
@@ -74,20 +84,22 @@ function MapSettings(props) {
                                     <InputRange className='selectRange'
                                         allowSameValues={true}
                                         minValue={0}
-                                        maxValue={301}
+                                        maxValue={300}
                                         value={props.surface}
-                                        formatLabel={value => value === 301 ? " >" + 300 + "m" + '\u00b2' : value + "m" + '\u00b2'}
+                                        formatLabel={value => value === 300 ? ">= " + 300 + "m" + '\u00b2' : value + "m" + '\u00b2'}
                                     onChange={v => {
                                         console.log(v.max);
                                             props.setSurface(v);
                                         }}
                                         onChangeStart={v => {
-                                            if (v.max > 301) {
-                                                props.setSurface({ min: props.surface.min, max: 301 });
+                                            if (v.max > 300) {
+                                                props.setSurface({ min: props.surface.min, max: 300 });
                                             } else {
                                                 props.setSurface(v);
                                             }
                                         }}
+                                        onChangeComplete={() =>setApi()}
+
                                         
                                     />
                                 </div>
@@ -103,19 +115,22 @@ function MapSettings(props) {
                                         
                                         allowSameValues={true}
                                         minValue={50}
-                                        maxValue={10000}
+                                        maxValue={1000}
                                         value={props.price}
-                                        formatLabel={value => formatPrice(value)}
+                                        //formatLabel={value => formatPrice(value)}
+                                        formatLabel={value => value === 1000 ? ">= " + 1 + "M €" : value + "k €"}
                                         onChange={v => {
                                             props.setPrice(v);
                                         }}
                                         onChangeStart={v => {
-                                            if (v.max > 10000) {
-                                                props.setPrice({ min: props.price.min, max: 10000 });
+                                            if (v.max > 1000) {
+                                                props.setPrice({ min: props.price.min, max: 1000 });
                                             } else {
                                                 props.setPrice(v);
                                             }
                                         }}
+                                        onChangeComplete={() =>setApi()}
+
                                     />
                                 </div>
 

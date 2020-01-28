@@ -27,10 +27,8 @@ function Map(props) {
     const [showHousing, setShowHousing] = useState(false);
 
     const [nbRooms, setNbRooms] = useState(0);
-    const [surface, setSurface] = useState({min:0,max:301});
-    const [price, setPrice] = useState({ min: 50, max:10000});
-    //NE PAS SUPPRIMER
-    //const fetchApiData =  async (a,b,c,d,e,f,g) => {
+    const [surface, setSurface] = useState({min:0,max:300});
+    const [price, setPrice] = useState({ min: 50, max:1000});
     
 
     const [viewport, setViewport] = useState({
@@ -73,7 +71,7 @@ function Map(props) {
 
     useEffect(() => {
         if (showHousing) {
-            fetchApiData(clickedFeature,setMapMarker)
+            fetchApiData(clickedFeature,price.min,price.max,surface.min,surface.max,nbRooms,setMapMarker)
         } else {
             closeMarkerInfo()
         }
@@ -100,7 +98,7 @@ function Map(props) {
                 <MapSettings mapStyle={mapStyle} displayedInfo={displayedInfo} setDisplayedInfo={value => setDisplayedInfo(value)} setMapStyle={value => setMapStyle(value)} showHousing={showHousing} setShowHousing={value => setShowHousing(value)}
                     nbRooms={nbRooms} setNbRooms={setNbRooms}
                     surface={surface} setSurface={setSurface}
-                    price={price} setPrice={setPrice}
+                    price={price} setPrice={setPrice} showHousing={showHousing} setMapMarker={setMapMarker} clickedFeature={clickedFeature} closeMarkerInfo={closeMarkerInfo}
                 ></MapSettings>
             </div>
 
