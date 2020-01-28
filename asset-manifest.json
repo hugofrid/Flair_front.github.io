@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/Flair_front.github.io/static/css/main.5c59674f.chunk.css",
-    "main.js": "/Flair_front.github.io/static/js/main.0ea9ada7.chunk.js",
-    "main.js.map": "/Flair_front.github.io/static/js/main.0ea9ada7.chunk.js.map",
+    "main.js": "/Flair_front.github.io/static/js/main.d1a2e584.chunk.js",
+    "main.js.map": "/Flair_front.github.io/static/js/main.d1a2e584.chunk.js.map",
     "runtime-main.js": "/Flair_front.github.io/static/js/runtime-main.74d045b4.js",
     "runtime-main.js.map": "/Flair_front.github.io/static/js/runtime-main.74d045b4.js.map",
     "static/css/2.156fe21f.chunk.css": "/Flair_front.github.io/static/css/2.156fe21f.chunk.css",
-    "static/js/2.4b26cf97.chunk.js": "/Flair_front.github.io/static/js/2.4b26cf97.chunk.js",
-    "static/js/2.4b26cf97.chunk.js.map": "/Flair_front.github.io/static/js/2.4b26cf97.chunk.js.map",
+    "static/js/2.511af795.chunk.js": "/Flair_front.github.io/static/js/2.511af795.chunk.js",
+    "static/js/2.511af795.chunk.js.map": "/Flair_front.github.io/static/js/2.511af795.chunk.js.map",
     "index.html": "/Flair_front.github.io/index.html",
-    "precache-manifest.f6d7ffadfc3eb5f5cf8e78a96ee67315.js": "/Flair_front.github.io/precache-manifest.f6d7ffadfc3eb5f5cf8e78a96ee67315.js",
+    "precache-manifest.76ded4050d5526e183f38479dad3e660.js": "/Flair_front.github.io/precache-manifest.76ded4050d5526e183f38479dad3e660.js",
     "service-worker.js": "/Flair_front.github.io/service-worker.js",
     "static/css/2.156fe21f.chunk.css.map": "/Flair_front.github.io/static/css/2.156fe21f.chunk.css.map",
     "static/css/main.5c59674f.chunk.css.map": "/Flair_front.github.io/static/css/main.5c59674f.chunk.css.map",
-    "static/js/2.4b26cf97.chunk.js.LICENSE": "/Flair_front.github.io/static/js/2.4b26cf97.chunk.js.LICENSE",
+    "static/js/2.511af795.chunk.js.LICENSE": "/Flair_front.github.io/static/js/2.511af795.chunk.js.LICENSE",
     "static/media/flair.png": "/Flair_front.github.io/static/media/flair.7ccd174f.png",
     "static/media/help.png": "/Flair_front.github.io/static/media/help.2c0c8c7d.png",
     "static/media/marker.png": "/Flair_front.github.io/static/media/marker.71c80642.png",
@@ -23,8 +23,8 @@
   "entrypoints": [
     "static/js/runtime-main.74d045b4.js",
     "static/css/2.156fe21f.chunk.css",
-    "static/js/2.4b26cf97.chunk.js",
+    "static/js/2.511af795.chunk.js",
     "static/css/main.5c59674f.chunk.css",
-    "static/js/main.0ea9ada7.chunk.js"
+    "static/js/main.d1a2e584.chunk.js"
   ]
 }
