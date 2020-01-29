@@ -187,7 +187,6 @@ export  const fetchMapData = async (setMapLayer) => {
             newFeat.properties.estimation5 = parseFloat(elem.properties.estimation5);
             return newFeat
         })
-        console.log(newLayer)
         setMapLayer(await newLayer);
     }
 }

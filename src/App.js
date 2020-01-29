@@ -9,14 +9,12 @@ function App() {
 
 
   const [firstTime, setFirstTime] = useState(localStorage.getItem('firstTime') || true);
-  console.log(firstTime);
 
 
   const goToNav = () => {
     localStorage.setItem('firstTime',false)
     setFirstTime(false);
   }
-  console.log( process.env.NODE_ENV )
 
   return (
     <div className="app">
