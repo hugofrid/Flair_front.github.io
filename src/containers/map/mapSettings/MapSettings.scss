@@ -2,7 +2,7 @@
 
 .title {
   font-size: 1.4rem;
-  text-decoration: underline;
+  text-decoration: none;
   margin-bottom: 1.5rem;
 }
 .settingsComponent {
@@ -16,7 +16,7 @@
   padding: 1rem;
   width: 250px;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.95);
 }
 .section {
   margin: 1rem 0;
@@ -48,7 +48,7 @@
 } 
 
 .input-range__track--background {
-    background: $secondaryColor !important;
+    background: #c7c7c7 !important;
     border-color: $secondaryColor !important;
 } 
 

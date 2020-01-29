@@ -62,10 +62,41 @@ function CityList(props) {
         props.setShowCityList(!props.showCityList);
     }
 
+    const getColor = (a,b) => {
+        if(a=="estimation2"){
+            if(b<=0){
+                return colors[0];
+            }
+            if(b>0 && b<=6){
+                return colors[1];
+            }
+            if(b>6 && b<=11){
+                return colors[2];
+            }
+            if(b>11){
+                return colors[3];
+            }
+            
+        }else{
+            if(b<=0){
+                return colors[0];
+            }
+            if(b>0 && b<=6){
+                return colors[1];
+            }
+            if(b>6 && b<=11){
+                return colors[2];
+            }
+            if(b>11){
+                return colors[3];
+            }
+        }
+        
+    }
+
     const renderedColors = colors.reduce((acc, obj) =>
         acc = acc + "," + obj)
     
-       console.log(featureList , featureList.length > 0 , loadLimite)
     return (
         <div className={"listComponent " + (props.showCityList ? "isOpen" : "")}>
 
@@ -94,8 +125,11 @@ function CityList(props) {
                                 >
                                     <div className="cityName">  {capitalize(elem.properties.city_name)}  - {elem.properties.codePostal}</div>
                                     <div className="infobyCity">
-                                        {
-                                            
+                                        { (props.displayedInfo=="estimation2") &&
+                                            <p>Prix du m² à 2 ans : <span style={{color:getColor(props.displayedInfo,elem.properties[props.displayedInfo])}}>{elem.properties[props.displayedInfo] > 0 ? "+"+elem.properties[props.displayedInfo]:elem.properties[props.displayedInfo]}%</span></p>
+                                        }
+                                        { (props.displayedInfo=="estimation5") &&
+                                            <p>Prix du m² à 5 ans : <span style={{color:getColor(props.displayedInfo,elem.properties[props.displayedInfo])}}>{elem.properties[props.displayedInfo] > 0 ? "+"+elem.properties[props.displayedInfo]:elem.properties[props.displayedInfo]}%</span></p>
                                         }
 
                                         {/* <JaugeBar colors={renderedColors} point={elem.properties[props.displayedInfo]} ></JaugeBar> */}
