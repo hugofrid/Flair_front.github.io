@@ -10,7 +10,7 @@ import './MapSettings.scss';
 
 function MapSettings(props) {
     const [isOpen, setIsOpen] = useState(false);
-    const [displayOptions, setDisplayOptions] = useState([{ value: "estimation5", text: 'sur 5 ans' }, { value: "estimation10", text: 'sur 10 ans' }]);
+    const [displayOptions, setDisplayOptions] = useState([{ value: "estimation2", text: 'sur 2 ans' }, { value: "estimation5", text: 'sur 5 ans' }]);
 
     const closeSettings = () => {
         setIsOpen(!isOpen);

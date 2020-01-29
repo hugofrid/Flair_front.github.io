@@ -24,10 +24,10 @@ function ModalInfo(props) {
 
 
             <GaugeChart id="gauge-chart2"
-                nrOfLevels={9}
+                nrOfLevels={4}
                 colors={colors}
-                percent={(props.feature[props.displayedInfo]) / 9}
-                formatTextValue={() => props.feature[props.displayedInfo] + 1}
+                percent={(props.feature[props.displayedInfo])}
+                formatTextValue={() => props.feature[props.displayedInfo]}
                 textColor={'#000000'}
                 animDelay={0}
             />

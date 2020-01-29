@@ -16,6 +16,7 @@ function App() {
     localStorage.setItem('firstTime',false)
     setFirstTime(false);
   }
+  console.log( process.env.NODE_ENV )
 
   return (
     <div className="app">

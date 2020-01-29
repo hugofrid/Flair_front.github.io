@@ -5,7 +5,7 @@ import IconBtn from '../../../componants/iconBtn/iconBtn.js';
 import { closeIcon, listIcon, sortDscIcon, sortAscIcon } from '../../../icons/icons.js'
 import JaugeBar from '../../../componants/jaugeBar/jaugeBar';
 import SearchInput from '../../../componants/searchInput/SearchInput.js'
-import {colors} from '../mapStyle'
+import { colors } from '../mapStyle'
 
 
 function CityList(props) {
@@ -18,27 +18,30 @@ function CityList(props) {
         return 0;
     }
 
-    const sortFeatures = (featureList) => {
+    const sortByDisplayedInfo = (a, b) => {
+      
+       if(orderList === "-") {
+            if (parseFloat(a.properties[props.displayedInfo]) < parseFloat(b.properties[props.displayedInfo]))
+            return -1;
+        if (parseFloat(a.properties[props.displayedInfo]) > parseFloat(b.properties[props.displayedInfo]))
+               return 1;
+       }
+       else {
+        if (parseFloat(a.properties[props.displayedInfo]) > parseFloat(b.properties[props.displayedInfo]))
+        return -1;
+    if (parseFloat(a.properties[props.displayedInfo]) < parseFloat(b.properties[props.displayedInfo]))
+        return 1;}
 
-        if (featureList) {
+    } 
+  
+
+    const sortFeatures =  (featureList) => {
+        if (featureList && featureList.length > 0) {
             let list = [];
-            featureList.map(elem => {
-                if (!list[elem.properties[props.displayedInfo]]) {
-                    list[elem.properties[props.displayedInfo]] = []
-                }
-                list[elem.properties[props.displayedInfo]].push(elem)
 
-            })
-            list.forEach(elem => elem.sort(sortByCityName));
-            let arrayList;
-            if (orderList === '-') {
-                arrayList = list.reduce((accumulator, object) => accumulator = [...accumulator, ...object])
-            }
-            if (orderList === '+') {
-
-                arrayList = list.reverse().reduce((accumulator, object) => accumulator = [...accumulator, ...object])
-            }
-            return arrayList;
+            list = featureList.sort(sortByCityName)
+            list = list.sort(sortByDisplayedInfo);
+            return list;
         }
 
     }
@@ -59,18 +62,19 @@ function CityList(props) {
         props.setShowCityList(!props.showCityList);
     }
 
-    const renderedColors = colors.reduce((acc, obj)=> 
+    const renderedColors = colors.reduce((acc, obj) =>
         acc = acc + "," + obj)
+    
+       console.log(featureList , featureList.length > 0 , loadLimite)
     return (
         <div className={"listComponent " + (props.showCityList ? "isOpen" : "")}>
 
             <IconBtn className={("toggleIcon ") + (props.showCityList && "closeIcon")} icon={props.showCityList ? closeIcon : listIcon} onClick={reduceList}></IconBtn>
 
 
-            {props.showCityList && featureList && featureList.length && loadLimite &&
+            {props.showCityList && featureList && featureList.length >0 && loadLimite &&
                 <div className="visibleList">
-
-
+                
                     <IconBtn className="listOrder" icon={orderList === "+" ? sortDscIcon : sortAscIcon} onClick={() => orderList === "+" ? setOrderList("-") : setOrderList("+")}></IconBtn>
 
                     <SearchInput arraySource={featureList} returnedArray={(elem) => setFilteredList(elem)}></SearchInput>
@@ -89,8 +93,12 @@ function CityList(props) {
 
                                 >
                                     <div className="cityName">  {capitalize(elem.properties.city_name)}  - {elem.properties.codePostal}</div>
-                                    <div >
-                                        <JaugeBar colors={renderedColors} point={elem.properties[props.displayedInfo]} ></JaugeBar>
+                                    <div className="infobyCity">
+                                        {
+                                            
+                                        }
+
+                                        {/* <JaugeBar colors={renderedColors} point={elem.properties[props.displayedInfo]} ></JaugeBar> */}
                                     </div>
                                 </div>)
 

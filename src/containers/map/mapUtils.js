@@ -3,8 +3,6 @@ import bbox from '@turf/bbox';
 import {getApiSet,getDataSet} from '../../services/frontServices.js'
 
 
-
-
 export const zoom = (viewport, setViewport, dir) => {
     if (dir === "+" && viewport.zoom < 24) {
        
@@ -176,7 +174,19 @@ export const fetchApiData = async (clickedFeature, b,c,d,e,f, setMapMarker) => {
 export  const fetchMapData = async (setMapLayer) => {
     let res = await getDataSet();
     if (res) {
-        const newLayer = await JSON.parse(res)
+        let newLayer = await JSON.parse(res)
+        newLayer.features = newLayer.features.map(elem => {
+            let newFeat = elem;
+            newFeat.properties.codePostal = elem.properties.codePostal +"";
+
+
+            newFeat.properties.prixActuel = parseFloat(elem.properties.prixActuel);
+            newFeat.properties.prix_2 = parseFloat(elem.properties.prix_2);
+            newFeat.properties.estimation2 = parseFloat(elem.properties.estimation2);
+            newFeat.properties.prix_5 = parseFloat(elem.properties.prix_5);
+            newFeat.properties.estimation5 = parseFloat(elem.properties.estimation5);
+            return newFeat
+        })
         console.log(newLayer)
         setMapLayer(await newLayer);
     }

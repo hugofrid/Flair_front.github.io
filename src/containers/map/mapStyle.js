@@ -1,29 +1,36 @@
 
 
 
-export const colors = ['#E5E3E0', '#E5D0BE', '#D3AF8F', '#DDA16C', '#D68D4D', '#D38037', '#C1681F', '#A34E09', '#68340A', '#442002']
+//export const colors = ['#BC3F1E', '#E5F52B', '#41BA29', '#36951D']
+export const colors = ['#D64823', '#E5F52B', '#92BA29', '#49C826']
+
+export const colorBoundaries2 = (displayedInfo) => displayedInfo === "estimation2" ? [-5, 0, 6, 10, 17] : [-50, 0, 25, 75, 137];
 
 export const mapStyleLayer = (displayedInfo) => {
-    const renderedColor = colors.reduce((acc, e, i) => {
-        if (i === 1) {
-            acc = [0,  acc ,1,e ];
-        }
-        else acc = [...acc ,i, e ];
-        return acc
-    })
 
+    const renderedColor = [
+        [colorBoundaries2(displayedInfo)[0], colors[0]],
+        [colorBoundaries2(displayedInfo)[1], colors[0]],
+        [colorBoundaries2(displayedInfo)[1] + 0.0001, colors[1]],
+        [colorBoundaries2(displayedInfo)[2], colors[2]],
+        [colorBoundaries2(displayedInfo)[3], colors[2]],
+        [colorBoundaries2(displayedInfo)[3]+0.1, colors[3]]] 
     return {
         id: 'data',
         source: 'mainMap',
         type: 'fill',
         paint: {
-            'fill-color': [
-                'interpolate',
-                ["linear"],
-                ['get', displayedInfo],
-                ...renderedColor
-            ],
-            'fill-opacity': 0.5
+            'fill-color': {
+                property: displayedInfo,
+                stops: [...renderedColor]
+            },
+            //     [
+            //     'stops',
+            //     ["linear"],
+            //     ['get', displayedInfo],
+            //     ...renderedColor
+            // ],
+            'fill-opacity': 0.7
         }
     }
 }

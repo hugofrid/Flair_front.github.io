@@ -23,7 +23,7 @@ function Map(props) {
     const [mapLayer, setMapLayer] = useState();
     const [mapMarker, setMapMarker] = useState();
     const [showCityList, setShowCityList] = useState(false);
-    const [displayedInfo, setDisplayedInfo] = useState('estimation5');
+    const [displayedInfo, setDisplayedInfo] = useState('estimation2');
     const [showHousing, setShowHousing] = useState(false);
 
     const [nbRooms, setNbRooms] = useState(0);
