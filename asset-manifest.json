@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/Flair_front.github.io/static/css/main.72bcb3a9.chunk.css",
-    "main.js": "/Flair_front.github.io/static/js/main.da4c4427.chunk.js",
-    "main.js.map": "/Flair_front.github.io/static/js/main.da4c4427.chunk.js.map",
+    "main.css": "/Flair_front.github.io/static/css/main.bee1b83f.chunk.css",
+    "main.js": "/Flair_front.github.io/static/js/main.0a725201.chunk.js",
+    "main.js.map": "/Flair_front.github.io/static/js/main.0a725201.chunk.js.map",
     "runtime-main.js": "/Flair_front.github.io/static/js/runtime-main.74d045b4.js",
     "runtime-main.js.map": "/Flair_front.github.io/static/js/runtime-main.74d045b4.js.map",
     "static/css/2.66de933b.chunk.css": "/Flair_front.github.io/static/css/2.66de933b.chunk.css",
-    "static/js/2.91620e94.chunk.js": "/Flair_front.github.io/static/js/2.91620e94.chunk.js",
-    "static/js/2.91620e94.chunk.js.map": "/Flair_front.github.io/static/js/2.91620e94.chunk.js.map",
+    "static/js/2.e2f4243e.chunk.js": "/Flair_front.github.io/static/js/2.e2f4243e.chunk.js",
+    "static/js/2.e2f4243e.chunk.js.map": "/Flair_front.github.io/static/js/2.e2f4243e.chunk.js.map",
     "index.html": "/Flair_front.github.io/index.html",
-    "precache-manifest.b28defd78003a48e1f93e610604f3090.js": "/Flair_front.github.io/precache-manifest.b28defd78003a48e1f93e610604f3090.js",
+    "precache-manifest.bbdd6322ef82ce4f81048a5e3506549e.js": "/Flair_front.github.io/precache-manifest.bbdd6322ef82ce4f81048a5e3506549e.js",
     "service-worker.js": "/Flair_front.github.io/service-worker.js",
     "static/css/2.66de933b.chunk.css.map": "/Flair_front.github.io/static/css/2.66de933b.chunk.css.map",
-    "static/css/main.72bcb3a9.chunk.css.map": "/Flair_front.github.io/static/css/main.72bcb3a9.chunk.css.map",
-    "static/js/2.91620e94.chunk.js.LICENSE": "/Flair_front.github.io/static/js/2.91620e94.chunk.js.LICENSE",
+    "static/css/main.bee1b83f.chunk.css.map": "/Flair_front.github.io/static/css/main.bee1b83f.chunk.css.map",
+    "static/js/2.e2f4243e.chunk.js.LICENSE": "/Flair_front.github.io/static/js/2.e2f4243e.chunk.js.LICENSE",
+    "static/media/Header.scss": "/Flair_front.github.io/static/media/Rockwell.7f22e492.ttc",
     "static/media/flair.png": "/Flair_front.github.io/static/media/flair.7ccd174f.png",
     "static/media/help.png": "/Flair_front.github.io/static/media/help.2c0c8c7d.png",
     "static/media/marker.png": "/Flair_front.github.io/static/media/marker.71c80642.png",
@@ -23,8 +24,8 @@
   "entrypoints": [
     "static/js/runtime-main.74d045b4.js",
     "static/css/2.66de933b.chunk.css",
-    "static/js/2.91620e94.chunk.js",
-    "static/css/main.72bcb3a9.chunk.css",
-    "static/js/main.da4c4427.chunk.js"
+    "static/js/2.e2f4243e.chunk.js",
+    "static/css/main.bee1b83f.chunk.css",
+    "static/js/main.0a725201.chunk.js"
   ]
 }
