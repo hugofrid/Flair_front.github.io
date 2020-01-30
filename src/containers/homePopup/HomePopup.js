@@ -26,7 +26,6 @@ function HomePopup(props) {
        
       }
       default: {
-        console.log(step, 'step ');
         return null;
       }
     }
