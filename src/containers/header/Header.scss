@@ -3,10 +3,9 @@
 @font-face {
   font-family: 'Rockwell';
   font-style: normal;
-  font-weight: 700;
   src: url('../../Rockwell.ttc'); /* IE9 Compat Modes */
   src: local('Rockwell'),
-       url('../../Rockwell.ttc') format('ttc');
+       url('../../Rockwell.ttc');
 
 }
 
@@ -15,17 +14,18 @@
     display: flex;
     position: relative;
     flex-direction: row;
-    background: linear-gradient(white,white);
+    background: white;
   }
   
-  .title {
+  .siteTitle {
     text-align: center;
-    margin:auto;
-    flex:1;
+    margin: auto;
+    flex: 1 1;
+    padding-top: 5px;
     font-size: 1.2rem;
     font-family: 'Rockwell';
-    font-weight: 350;
     color: black;
+    vertical-align: middle;
   }
   
   .sizeLogo {
@@ -38,5 +38,5 @@
   .help{
       position: absolute;
       right:1rem;
-     align-self: center;
+      align-self: center;
   }
