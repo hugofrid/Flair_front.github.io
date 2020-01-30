@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './CityList.css'
 import { capitalize } from '../../../pipes/stringpipe.js'
 import IconBtn from '../../../componants/iconBtn/iconBtn.js';
-import { closeIcon, listIcon, sortDscIcon, sortAscIcon } from '../../../icons/icons.js'
+import { closeIcon, searchListIcon, sortDscIcon, sortAscIcon } from '../../../icons/icons.js'
 import JaugeBar from '../../../componants/jaugeBar/jaugeBar';
 import SearchInput from '../../../componants/searchInput/SearchInput.js'
 import { colors, colorBoundaries } from '../mapStyle'
@@ -102,7 +102,7 @@ function CityList(props) {
     return (
         <div className={"listComponent " + (props.showCityList ? "isOpen" : "")}>
 
-            <IconBtn className={("toggleIcon ") + (props.showCityList && "closeIcon")} icon={props.showCityList ? closeIcon : listIcon} onClick={reduceList}></IconBtn>
+            <IconBtn className={("toggleIcon ") + (props.showCityList && "closeIcon")} icon={props.showCityList ? closeIcon : searchListIcon} onClick={reduceList}></IconBtn>
 
 
             {props.showCityList && featureList && featureList.length > 0 && loadLimite &&

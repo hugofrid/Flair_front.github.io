@@ -57,7 +57,7 @@ function ModalInfo(props) {
                 nrOfLevels={4}
                 colors={colors}
                 percent={getPourcent(props.feature[props.displayedInfo])/100}
-                formatTextValue={() => "+ " + props.feature[props.displayedInfo] + "%"}
+                formatTextValue={() => (props.feature[props.displayedInfo]>0 ? "+ " :"" ) + props.feature[props.displayedInfo] + "%"}
                 textColor={'#000000'}
                 animDelay={0}
             />
