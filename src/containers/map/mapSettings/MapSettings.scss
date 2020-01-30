@@ -2,7 +2,7 @@
 
 .title {
   font-size: 1.4rem;
-  text-decoration: underline;
+  text-decoration: none;
   margin-bottom: 1.5rem;
 }
 .settingsComponent {
@@ -48,7 +48,7 @@
 } 
 
 .input-range__track--background {
-    background: $secondaryColor !important;
+    background: #c7c7c7 !important;
     border-color: $secondaryColor !important;
 } 
 

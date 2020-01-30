@@ -7,7 +7,7 @@ function Header() {
 
     return ( <header className="head">
     <img className="sizeLogo" src={flairIcon} alt="logo"/> 
-        <div className="title">Investissez le futur</div>
+        <div className="siteTitle">Investissez le futur</div>
         <Helper className="help"></Helper>
   </header>)
 };

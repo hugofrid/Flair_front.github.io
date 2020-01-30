@@ -3,22 +3,25 @@
   height: 24px;
 }
 
-.helper{
-    position: relative;
-}
+
+
 
 .textInt {
-    display: none;
-    z-index: 10000;
+  display: none;
+  z-index: 10000;
   width: 300px;
+  height: 375px;
   margin-right: 5px;
   margin-left: 5px;
+  margin-top: 25px;
   position: absolute;
   top: 110%;
   right:0;
-  background: darkslategrey;
+  background:#f98330;
+  text-align: justify;
   color:white;
   padding: 1.5rem;
+  opacity: 0.95;
 border-radius: 15px;
 
 }
@@ -31,13 +34,15 @@ border-radius: 15px;
   display: block;
 }
 
-.rouge {
-  color: rgb(199, 38, 38);
+li{
+  list-style: none;
 }
 
-.vert {
-  color: green;
+li:before{
+  content:"\2192";
 }
+
 .endLine {
   text-align: center;
+  font-family: "Rockwell";
 }

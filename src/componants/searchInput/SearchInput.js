@@ -33,7 +33,7 @@ function SearchInput (props) {
     return (
     <div>
     <div className="wrap">
-                <input type="text" className="searchTerm" placeholder="villes, code postale... " onChange={handleNameChange}/>
+                <input type="text" className="searchTerm" placeholder="Ville, Code postal... " onChange={handleNameChange}/>
             <button className="searchButton" type="submit" > 
             <img className="icon" src={searchIcon}/>
             </button>

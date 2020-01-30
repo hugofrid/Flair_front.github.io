@@ -16,7 +16,7 @@
     box-sizing: border-box;
     width: 42px;
     height: 24px;
-    background: lightgray;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,13 +25,14 @@
 
 .toggleButton.checked {
     border: 1px solid $primaryColor;
-    background: lightgray;
+    background: #ffffff;
 
     transition: 0.2s;
 }
 
 .toggleButton.unchecked {
-    border: 1px solid $secondaryColor;
+    border: 1px solid #000000;
+    
 
     transition: 0.2s;
 
@@ -50,6 +51,7 @@
     background: $secondaryColor;
     left:1px;   
     transition:0.2s;
+    background: #000000;
 
 }
 

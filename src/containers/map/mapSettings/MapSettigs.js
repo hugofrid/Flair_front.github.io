@@ -39,21 +39,21 @@ function MapSettings(props) {
                 <div className="settings">
                     <div className="title">Réglages</div>
                     <div className="section">
-                        <DropDownSelect label='Estimation :' defaultValue={props.displayedInfo} options={displayOptions} valueChange={(value) => props.setDisplayedInfo(value)}></DropDownSelect>
+                        <DropDownSelect label='Estimation ' defaultValue={props.displayedInfo} options={displayOptions} valueChange={(value) => props.setDisplayedInfo(value)}></DropDownSelect>
                     </div>
                     <div className="section">
                         <ToggleButton
-                            label='Mode nuit :'
+                            label='Mode sombre '
                             checkedValue={props.mapStyle === 'dark'} checkedValueChange={() => toggleMode
                                 (props.mapStyle, props.setMapStyle)} alt='switch mode' />
                     </div>
                     <div className="section">
-                        <ToggleButton label='Afficher les biens :' checkedValue={props.showHousing} checkedValueChange={value => props.setShowHousing(value)} />
+                        <ToggleButton label='Afficher les biens ' checkedValue={props.showHousing} checkedValueChange={value => props.setShowHousing(value)} />
                     </div>
                     {
                         props.showHousing &&
                         <div>
-                            <h3>Filtre de recherche :</h3>
+                            <br/><div className="title">Filtre de recherche </div>
                             <div className="houssingSetting">
                                 <div className="housingLabel">
                                     <span style={{ whiteSpace: "nowrap" }}>Nombre de pièces :</span> {props.nbRooms > 0 ? props.nbRooms : '..'}

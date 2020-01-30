@@ -25,7 +25,6 @@ function Map(props) {
     const [showCityList, setShowCityList] = useState(false);
     const [displayedInfo, setDisplayedInfo] = useState('estimation2');
     const [showHousing, setShowHousing] = useState(false);
-
     const [nbRooms, setNbRooms] = useState(0);
     const [surface, setSurface] = useState({min:0,max:300});
     const [price, setPrice] = useState({ min: 50, max:1000});
