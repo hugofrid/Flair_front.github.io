@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Flair_front.github.io/precache-manifest.2b107cff3da98bdf7c3e6e12479f942b.js"
+  "/Flair_front.github.io/precache-manifest.b07176db60dd8c3460dd46c8f2c7bc8c.js"
 );
 
 self.addEventListener('message', (event) => {
