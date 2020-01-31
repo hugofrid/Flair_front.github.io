@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cdd054e1bc3d0fe329c5d59917366252",
+    "revision": "b43805ddb005000280ee79f5163e475e",
     "url": "/Flair_front.github.io/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Flair_front.github.io/static/css/2.63582517.chunk.css"
   },
   {
-    "revision": "e51dbda74fc9c975e32f",
+    "revision": "1827d69e69955005f43e",
     "url": "/Flair_front.github.io/static/css/main.621979d5.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Flair_front.github.io/static/js/2.24717025.chunk.js.LICENSE"
   },
   {
-    "revision": "e51dbda74fc9c975e32f",
-    "url": "/Flair_front.github.io/static/js/main.717465aa.chunk.js"
+    "revision": "1827d69e69955005f43e",
+    "url": "/Flair_front.github.io/static/js/main.89cc2fa8.chunk.js"
   },
   {
     "revision": "6deb769faac8281f7722",
