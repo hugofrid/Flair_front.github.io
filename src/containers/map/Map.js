@@ -116,7 +116,7 @@ function Map(props) {
             <MapGL {...viewport}
                 mapStyle={mapStyle === 'dark' ? 'mapbox://styles/hugofrid/ck622xrs60ool1imt2w7wyjn7' : 'mapbox://styles/hugofrid/ck622uk1w0ogr1inzcrgzhiho'} onViewportChange={(viewport => setViewport(viewport))}
                 onHover={event => onHover(setTooltipsPosition, setHoveredFeature, event)}
-                onClick={event => onMapClick(setViewport, setClickedFeature, setClickedSource, event)}
+                onClick={event => onMapClick(setViewport, setClickedFeature, setClickedSource,clickedFeature, event)}
                 mapboxApiAccessToken="pk.eyJ1IjoiaHVnb2ZyaWQiLCJhIjoiY2s1M3RpeXlvMGJkdTNscnJ3YWxiMWw1MSJ9.ZdCzWSCG53V78zgGEez6dg"
             >
                 {mapLayer && mapLayer.features && <Source id='mainMap' type="geojson" data={mapLayer} >

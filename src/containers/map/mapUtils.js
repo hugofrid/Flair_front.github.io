@@ -73,20 +73,19 @@ export const zoomToFeature = (feature,setViewport,setClickedFeature, setClickedS
 
 
 
-export const onMapClick = (setViewport,setClickedFeature, setClickedSource, event) => {
+export const onMapClick = (setViewport,setClickedFeature, setClickedSource,clickedFeature, event) => {
     const {
         features,
     } = event;
 
+    const newClickedFeature = features && features.find(f => f.layer.id === 'data');
   
-    if (features && features.length && features[0].source === 'mainMap') {
-        const newClickedFeature = features && features.find(f => f.layer.id === 'data');
+    console.log(newClickedFeature.properties,clickedFeature)
+    if (features && features.length && newClickedFeature && features[0].source === 'mainMap') {
         zoomToFeature(newClickedFeature, setViewport, setClickedFeature, setClickedSource)
-    
-        
     }
-    else  if (features && features.length && features[1].source === 'mainMap') {
-        const newClickedFeature = features && features.find(f => f.layer.id === 'data');
+    else  if (features && features.length && newClickedFeature && features[1].source === 'mainMap' && clickedFeature.codeINSEE !== newClickedFeature.properties.codeINSEE) {
+        
         zoomToFeature(newClickedFeature, setViewport, setClickedFeature, setClickedSource)
     }
     else {
