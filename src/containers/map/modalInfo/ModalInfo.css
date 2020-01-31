@@ -4,7 +4,7 @@
     background:rgba(255,255,255,0.8);
     display:flex;
     flex-direction: column;
-    width:300px;
+    width:350px;
     flex:1;
     margin-top: 1rem;
     max-height: 40%;
@@ -18,19 +18,94 @@
     text-align: center;
     font-size: 1.5rem;
     padding: 0 2rem;
-
+    margin-bottom:1rem;
 
 }
 
-.subInfo{
-    text-align: center;
-    font-size:0.8rem;
-    margin-bottom:2rem;
-}
+
+
 
 .chartTitle{
     text-align: center;
     width:100%;
 }
 
+.carrousel{
 
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+}
+
+.arrow{
+    width:24px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    cursor:pointer;
+}
+
+.arrow.dissable{
+    filter:contrast(0.2);
+    cursor:unset;
+}
+
+.arrow img{
+    width: 100%;
+    height: auto;
+}
+
+.slides{
+    transition: .3s;
+    display: flex;
+    flex:1 0;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.slide{
+    flex: 0 0 100%;
+    height:100%;
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+
+.slide.movedBy1{
+    transform:translateX(-100%)
+
+}
+.cityData{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+
+
+.slideContent{
+    width:100%;
+}
+#gauge-chart{
+    width:100%;
+}
+
+#gauge-chart svg{
+    width:100% !important;
+}
+
+
+
+.data{
+    margin-bottom: .5rem;
+}
+.dataName{
+    font-weight: bold;
+    margin-bottom: .3rem;
+}
+
+.dataNumb{
+    padding-left: .5rem;
+}

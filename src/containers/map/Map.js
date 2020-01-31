@@ -66,6 +66,9 @@ function Map(props) {
         fetchMapData(setMapLayer);
     }, [props])
 
+    useEffect(() => {
+        closeMarkerInfo();
+    },[nbRooms,surface,price])
  
 
     useEffect(() => {
@@ -89,7 +92,7 @@ function Map(props) {
                     <ModalInfo setClickedFeature={setClickedFeature} setClickedSource={setClickedSource} feature={clickedFeature}
                         displayedInfo={displayedInfo}
                     />}
-                {(clickedMarker && clickedFeature && clickedMarker.properties.codeP == clickedFeature.codePostal) && <MarkerInfo className={showCityList && "movedLeft"} onClose={closeMarkerInfo} feature={clickedMarker} />}
+                {(clickedMarker && clickedFeature && clickedMarker.properties.codeP == clickedFeature.codePostal) && <MarkerInfo className={showCityList && "movedLeft"} onClose={closeMarkerInfo} marker={clickedMarker} feature={clickedFeature} displayedInfo={displayedInfo}/>}
             </div>
           
 
@@ -111,13 +114,14 @@ function Map(props) {
             </div>
 
             <MapGL {...viewport}
-                mapStyle={'mapbox://styles/mapbox/' + mapStyle + '-v10'} onViewportChange={(viewport => setViewport(viewport))}
+                mapStyle={mapStyle === 'dark' ? 'mapbox://styles/hugofrid/ck622xrs60ool1imt2w7wyjn7' : 'mapbox://styles/hugofrid/ck622uk1w0ogr1inzcrgzhiho'} onViewportChange={(viewport => setViewport(viewport))}
                 onHover={event => onHover(setTooltipsPosition, setHoveredFeature, event)}
                 onClick={event => onMapClick(setViewport, setClickedFeature, setClickedSource, event)}
-                mapboxApiAccessToken="pk.eyJ1IjoiYm90cmVsIiwiYSI6ImNrM2Z5ODVxdzA5N3YzY3FjajcwcmloM2UifQ.rYqepC72dc2DxKTLLPCPgQ"
+                mapboxApiAccessToken="pk.eyJ1IjoiaHVnb2ZyaWQiLCJhIjoiY2s1M3RpeXlvMGJkdTNscnJ3YWxiMWw1MSJ9.ZdCzWSCG53V78zgGEez6dg"
             >
                 {mapLayer && mapLayer.features && <Source id='mainMap' type="geojson" data={mapLayer} >
-                    <Layer  {...dataLayer} beforeId={mapStyle === 'dark' ? 'settlement-label' : null} 
+                    <Layer  {...dataLayer} beforeId='settlement-major-label' beforeId='settlement-minor-label'
+                    beforeId='settlement-subdivision-label'
  />
                 </Source>}
 
@@ -145,8 +149,10 @@ function Map(props) {
                 {(clickedFeature && clickedLayer && clickedSource) &&
 
                     <Source id='clickedLayer' type="geojson" data={clickedSource}>
-                        <Layer  {...clickedLayer[0]}   />
-                        <Layer  {...clickedLayer[1]}   />
+                        <Layer  {...clickedLayer[0]}  beforeId='settlement-major-label' beforeId='settlement-minor-label'
+                    beforeId='settlement-subdivision-label' />
+                        <Layer  {...clickedLayer[1]} beforeId='settlement-major-label' beforeId='settlement-minor-label'
+                    beforeId='settlement-subdivision-label'  />
 
                     </Source>}
 

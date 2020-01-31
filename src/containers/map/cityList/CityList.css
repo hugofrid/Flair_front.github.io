@@ -10,8 +10,9 @@
 .listComponent.isOpen {
   padding: 1rem;
   transition: 1s;
-  width: 300px;
+  width: 350px;
   height: 400px;
+  max-height: 45%;
   border-radius: 15px;
   overflow: hidden;
   position: relative;
@@ -73,6 +74,11 @@ overflow: hidden;
 }
 .city.selected {
   border: 1px solid black;
+}
+
+.noResult{
+  margin: auto;
+  text-align: center;
 }
 
 .showMore {

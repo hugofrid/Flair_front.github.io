@@ -20,16 +20,11 @@ export const mapStyleLayer = (displayedInfo) => {
         source: 'mainMap',
         type: 'fill',
         paint: {
+            'fill-outline-color':"rgba(255, 255, 255, 0.6)",
             'fill-color': {
                 property: displayedInfo,
                 stops: [...renderedColor]
             },
-            //     [
-            //     'stops',
-            //     ["linear"],
-            //     ['get', displayedInfo],
-            //     ...renderedColor
-            // ],
             'fill-opacity': 0.7
         }
     }

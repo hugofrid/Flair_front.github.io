@@ -85,6 +85,10 @@ export const onMapClick = (setViewport,setClickedFeature, setClickedSource, even
     
         
     }
+    else  if (features && features.length && features[1].source === 'mainMap') {
+        const newClickedFeature = features && features.find(f => f.layer.id === 'data');
+        zoomToFeature(newClickedFeature, setViewport, setClickedFeature, setClickedSource)
+    }
     else {
         setClickedFeature(null);
         setClickedSource(null);
@@ -163,11 +167,8 @@ export const fetchApiData = async (clickedFeature, b,c,d,e,f, setMapMarker) => {
         })
 
 
-        //console.log(geoData.features);
-        // jsonContent  = await  JSON.stringify(geoData);
         setMapMarker(await geoData.features);
 
-        //console.log(jsonContent)
     }
 }
 

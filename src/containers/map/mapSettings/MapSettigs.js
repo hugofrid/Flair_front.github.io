@@ -70,7 +70,7 @@ function MapSettings(props) {
                                         onChange={v => props.setNbRooms(v)}
                                         onChangeComplete={() =>setApi()}
                                         value={props.nbRooms}
-                                        formatLabel={value => value === 5 ? ">= " + 5 : value }
+                                        formatLabel={value => value === 5 ? '\u2265' + 5 :  value === 0 ? '...' : value}
                                         allowSameValues={true}
                                     />
                                 </div>
@@ -86,7 +86,7 @@ function MapSettings(props) {
                                         minValue={0}
                                         maxValue={300}
                                         value={props.surface}
-                                        formatLabel={value => value === 300 ? ">= " + 300 + "m" + '\u00b2' : value + "m" + '\u00b2'}
+                                        formatLabel={value => value === 300 ? '\u2265' + 300 + "m" + '\u00b2' : value + "m" + '\u00b2'}
                                     onChange={v => {
                                             props.setSurface(v);
                                         }}
@@ -117,7 +117,7 @@ function MapSettings(props) {
                                         maxValue={1000}
                                         value={props.price}
                                         //formatLabel={value => formatPrice(value)}
-                                        formatLabel={value => value === 1000 ? ">= " + 1 + "M €" : value + "k €"}
+                                        formatLabel={value => value === 1000 ? '\u2265' + 1 + "M €" : value + "k €"}
                                         onChange={v => {
                                             props.setPrice(v);
                                         }}

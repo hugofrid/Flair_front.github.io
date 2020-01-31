@@ -17,18 +17,19 @@ import _sortDscIcon from './sort-descending.png'
 import _housingIcon from './housing.png'
 import _foreignIcon from './foreign.png'
 import _flairIcon from './flair.png'
+import _leftArrowIcon from './leftArrow.svg'
+import _rightArrowIcon from './rightArrow.svg'
 
 
 
 export const housingIcon = _housingIcon;
+export const leftArrowIcon = _leftArrowIcon;
+export const rightArrowIcon = _rightArrowIcon;
 export const flairIcon = _flairIcon;
-
 export const searchIcon = _searchIcon;
 export const searchListIcon = _searchListIcon;
-
 export const helpIcon = _helpIcon;
 export const foreignIcon = _foreignIcon;
-
 export const minusIcon = _minusIcon;
 export const plusIcon = _plusIcon;
 export const moonIcon = _moonIcon;
@@ -39,7 +40,6 @@ export const closeIcon = _closeIcon;
 export const checkIcon = _checkIcon; 
 export const markerIcon = _markerIcon; 
 export const selectedMarkerIcon = _selectedMarkerIcon; 
-
 export const listIcon = _listIcon; 
 export const sortDscIcon = _sortDscIcon;
 export const sortAscIcon = _sortAscIcon;

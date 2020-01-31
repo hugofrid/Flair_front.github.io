@@ -41,10 +41,9 @@ function CityList(props) {
 
     const sortFeatures = (filteredList) => {
         if (filteredList && filteredList.length > 0) {
-            let list = [];
 
-            list = filteredList.sort(sortByCityName)
-            list = list.sort(sortByDisplayedInfo);
+           let  list = [...filteredList.sort(sortByCityName)]
+            list = [...list.sort(sortByDisplayedInfo)];
             return list;
         }
 
@@ -78,26 +77,13 @@ function CityList(props) {
         }
 
     }
-    useEffect(() => {
-        console.log(filteredList[0].properties.estimation2)
-        
-    },[filteredList])
-    
 
+    
     useEffect(() => {
-        console.log(orderList)
-        const orderedFilterList = sortFeatures(filteredList)
-       // console.log(filteredList[0].properties.estimation2)
+        const orderedFilterList =[...sortFeatures(filteredList)]
         setFilteredList([...orderedFilterList]);
-        //console.log(filteredList[0].properties.estimation2)
     },[orderList])
 
-    // function changeOrder(order){
-    //     console.log("avant",order,orderList, filteredList[0].properties);
-    //           
-    //     console.log("apres",order,orderList, filteredList[0].properties);
-
-    // }
 
     return (
         <div className={"listComponent " + (props.showCityList ? "isOpen" : "")}>
@@ -114,8 +100,9 @@ function CityList(props) {
 
 
                     <div className="list">
-                        <div className="scrollComponant">
-                            {filteredList && 
+                    <div className="scrollComponant">
+                        { filteredList && filteredList.length === 0 && <div className="noResult">Aucun résultat pour cette récherche</div>}
+                            {(filteredList && 
 
                                 filteredList.slice(0, loadLimite).map((elem, index) =>
 
@@ -138,8 +125,12 @@ function CityList(props) {
                                         </div>
                                     </div>)
 
-                            }{(loadLimite <= filteredList.length) &&
+                        ) 
+                        }
+                        
+                        {(loadLimite <= filteredList.length) &&
                                 <div className="showMore" onClick={() => setLoadLimite(loadLimite + 100)}>voir plus </div>}
+
                         </div>
                     </div>
                 </div>
