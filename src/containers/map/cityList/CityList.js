@@ -42,15 +42,14 @@ function CityList(props) {
     const sortFeatures = (filteredList) => {
         if (filteredList && filteredList.length > 0) {
 
-           let  list = [...filteredList.sort(sortByCityName)]
-            list = [...list.sort(sortByDisplayedInfo)];
+           let  list = [...(filteredList.sort(sortByCityName)).sort(sortByDisplayedInfo)]
             return list;
         }
 
     }
 
 
-    const [featureList, setFeatureList] = useState(props.features);
+    const [featureList, setFeatureList] = useState([...sortFeatures(props.features)]);
     const [filteredList, setFilteredList] = useState([...sortFeatures(featureList)]);
 
 
