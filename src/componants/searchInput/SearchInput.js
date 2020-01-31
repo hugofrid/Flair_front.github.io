@@ -21,7 +21,6 @@ function SearchInput (props) {
     
     const _filter = () => {
         
-        
         const filteredArray = props.arraySource.filter(elem => {
             const cityName = (elem.properties.city_name).toLowerCase().replace(/-/gi, ' ');
             return cityName.includes(input.toLowerCase().replace(/-/gi, ' ')) || elem.properties.codePostal.includes(input)
@@ -35,7 +34,7 @@ function SearchInput (props) {
     <div className="wrap">
                 <input type="text" className="searchTerm" placeholder="Ville, Code postal... " onChange={handleNameChange}/>
             <button className="searchButton" type="submit" > 
-            <img className="icon" src={searchIcon}/>
+            <img className="icon" src={searchIcon} alt="searc"/>
             </button>
     </div>
     </div>

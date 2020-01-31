@@ -56,7 +56,7 @@ function ModalInfo(props) {
                 </div>
                 <div className="slides">
 
-                    <div className="slide " className={"slide " + ('movedBy' + slide)}>
+                    <div  className={"slide movedBy" + slide}>
                         <GaugeChart id="gauge-chart"
                             nrOfLevels={4}
                             colors={colors}
@@ -67,7 +67,7 @@ function ModalInfo(props) {
                         />
                         <div className="chartTitle">Estimation de la rentabilité{props.displayedInfo === 'estimation2' ? ' à 2 ans' : ' à 5 ans'}</div>
                     </div>
-                    <div className={"slide cityDatas " + ('movedBy' + slide)} >
+                    <div className={"slide cityDatas movedBy" + slide} >
                         <div className="data"> 
                         <div className="dataName">Prix moyen du m² :</div>
                             <div className="dataNumb">Actuel : {(props.feature.prixActuel).toFixed(0)}€</div>

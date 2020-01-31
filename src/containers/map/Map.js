@@ -73,12 +73,12 @@ function Map(props) {
 
     useEffect(() => {
         if (showHousing) {
-            fetchApiData(clickedFeature,price.min,price.max,surface.min,surface.max,nbRooms,setMapMarker)
+            fetchApiData(clickedFeature, price.min, price.max, surface.min, surface.max, nbRooms, setMapMarker)
         } else {
             closeMarkerInfo()
         }
 
-    }, [showHousing,clickedFeature])
+    }, [showHousing, clickedFeature]);
 
 
     
@@ -100,7 +100,7 @@ function Map(props) {
                 <MapSettings mapStyle={mapStyle} displayedInfo={displayedInfo} setDisplayedInfo={value => setDisplayedInfo(value)} setMapStyle={value => setMapStyle(value)} showHousing={showHousing} setShowHousing={value => setShowHousing(value)}
                     nbRooms={nbRooms} setNbRooms={setNbRooms}
                     surface={surface} setSurface={setSurface}
-                    price={price} setPrice={setPrice} showHousing={showHousing} setMapMarker={setMapMarker} clickedFeature={clickedFeature} closeMarkerInfo={closeMarkerInfo}
+                    price={price} setPrice={setPrice}  setMapMarker={setMapMarker} clickedFeature={clickedFeature} closeMarkerInfo={closeMarkerInfo}
                 ></MapSettings>
             </div>
 

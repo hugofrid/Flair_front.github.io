@@ -3,7 +3,6 @@ import './CityList.css'
 import { capitalize } from '../../../pipes/stringpipe.js'
 import IconBtn from '../../../componants/iconBtn/iconBtn.js';
 import { closeIcon, searchIcon, sortDscIcon, sortAscIcon } from '../../../icons/icons.js'
-import JaugeBar from '../../../componants/jaugeBar/jaugeBar';
 import SearchInput from '../../../componants/searchInput/SearchInput.js'
 import { colors, colorBoundaries } from '../mapStyle'
 
@@ -49,7 +48,7 @@ function CityList(props) {
     }
 
 
-    const [featureList, setFeatureList] = useState([...sortFeatures(props.features)]);
+    const featureList = [...sortFeatures(props.features)];
     const [filteredList, setFilteredList] = useState([...sortFeatures(featureList)]);
 
 

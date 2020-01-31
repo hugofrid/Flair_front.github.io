@@ -10,7 +10,7 @@ import './MapSettings.scss';
 
 function MapSettings(props) {
     const [isOpen, setIsOpen] = useState(false);
-    const [displayOptions, setDisplayOptions] = useState([{ value: "estimation2", text: 'sur 2 ans' }, { value: "estimation5", text: 'sur 5 ans' }]);
+    const displayOptions = [{ value: "estimation2", text: 'sur 2 ans' }, { value: "estimation5", text: 'sur 5 ans' }];
 
     const closeSettings = () => {
         setIsOpen(!isOpen);
@@ -59,13 +59,7 @@ function MapSettings(props) {
                                     <span style={{ whiteSpace: "nowrap" }}>Nombre de pièces :</span> {props.nbRooms > 0 ? props.nbRooms : '..'}
                                 </div>
                                 <div className="rangeArea">
-                                    <InputRange className='selectRange' formatLabel={value => {
-                                        if (value === 0) {
-                                            return '...'
-                                        } else {
-                                            return value
-                                        }
-                                    }}
+                                    <InputRange className='selectRange' 
                                         maxValue={5}
                                         onChange={v => props.setNbRooms(v)}
                                         onChangeComplete={() =>setApi()}
@@ -78,7 +72,7 @@ function MapSettings(props) {
                             </div>
                             <div className="houssingSetting">
                                 <div className="housingLabel">
-                                    Surface : {props.surface.min}{"m" + '\u00b2'} - {props.surface.max > 300 ? ">300m" + '\u00b2' : props.surface.max + "m" + '\u00b2'}
+                                    Surface : {props.surface.min+"m\u00b2"} - {props.surface.max > 300 ? ">300m\u00b2" : props.surface.max + "m\u00b2"}
                                 </div>
                                 <div className="rangeArea">
                                     <InputRange className='selectRange'
@@ -86,7 +80,7 @@ function MapSettings(props) {
                                         minValue={0}
                                         maxValue={300}
                                         value={props.surface}
-                                        formatLabel={value => value === 300 ? '\u2265' + 300 + "m" + '\u00b2' : value + "m" + '\u00b2'}
+                                        formatLabel={value => value === 300 ? '\u2265' + 300 + "m\u00b2" : value + "m\u00b2"}
                                     onChange={v => {
                                             props.setSurface(v);
                                         }}

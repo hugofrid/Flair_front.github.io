@@ -4,19 +4,19 @@ import axios from 'axios';
 async function getApiSet(a,b,c,d,e,f) {
 
   
-  if(b==null){
+  if(b===null){
     b=1;
   }
-  if(c==null || c==1000000){
+  if(c===null || c===1000000){
     c=10000000;
   }
-  if(d==null){
+  if(d===null){
     d=1;
   }
-  if(e==null || e==300){
+  if(e===null || e===300){
     e=100000;
   }
-  if(f==null){
+  if(f===null){
     f="1,2,3,4,5";
   }
 

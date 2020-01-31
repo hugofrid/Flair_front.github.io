@@ -60,7 +60,7 @@ function HomePopup(props) {
     <div className="popupWindow">
       <div className="popup">
         <div className="logoSpace">
-          <img className='flairLogo' src={flairIcon}></img>
+          <img className='flairLogo' src={flairIcon} />
         </div>
         <Stepper steps={3} activeStep={step}></Stepper>
         <h2>Bienvenue sur Flair !</h2>
