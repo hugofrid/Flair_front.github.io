@@ -3,6 +3,7 @@ import './HomePopup.scss';
 import FlairButton from '../../componants/flairButton/FlairButton';
 import { flairIcon } from '../../icons/icons.js';
 import Stepper from '../../componants/stepper/Stepper.js'
+import { tuto1,tuto2,tuto3 } from '../../images/images.js';
 
 
 
@@ -15,15 +16,36 @@ function HomePopup(props) {
   const  StepDescritpion = ()=> {
     switch (step) {
       case 0: {
-        return <p>Flair est une application qui vous permet d'investir à l'aide  d'une carte de l'Île-de-France en constante mutation. <br/><br/> Elle analyse et trouve pour vous les villes pour lesquelles l’investissement sera le plus rentable.</p>
+        return <p className="textTuto">Flair est une application qui vous permet d'investir à l'aide  d'une carte de l'Île-de-France. <br/> Elle trouve pour vous les villes pour lesquelles l’investissement sera le plus rentable. Et vous affiche cette rentabilité selon un code couleur.</p>
       }
       case 1: {
-        return <p>Les informations que vous trouverez proviennent des données démographiques, des tendances du marché et des futurs projets d’aménagement urbain. <br/> <br/>
+        return <p className="textTuto">En cliquant sur une ville, vous trouverez des informations provenant des données démographiques, des tendances du marché et des futurs projets d’aménagement urbain.<br/> 
         Ces informations passent par notre algorithme, qui calcule pour vous les zones avec les meilleures rentabilités.</p>
       }
       case 2: {
-        return <p>Chaque ville possède un pourcentage de rentabilité. Vous pouvez accéder aux informations détaillées par ville pour comprendre plus en profondeur la provenance de nos résultats.<br/><br/> Bon Flairage !</p>
+        return <p className="textTuto">Chaque ville possède un pourcentage de rentabilité. Vous pouvez accéder aux informations détaillées par ville pour comprendre plus en profondeur la provenance de nos résultats.<br/><br/>Bon Flairage !</p>
        
+      }
+      default: {
+        return null;
+      }
+    }
+  }
+
+
+  const TutoScreen = () => {
+    switch (step) {
+      case 0: {
+        return <img src={tuto1} alt="tutoriel screen" /> 
+        ;
+      }
+      case 1: {
+        return<img src={tuto2} alt="tutoriel screen" /> 
+
+      }
+      case 2: {
+         return<img src={tuto3} alt="tutoriel screen" /> 
+ 
       }
       default: {
         return null;
@@ -45,6 +67,9 @@ function HomePopup(props) {
 
         <div className="description">
           <StepDescritpion />
+          <div className="tutoScreen">
+              <TutoScreen/>
+          </div>
         </div>
 
         <div className="buttonSpace">

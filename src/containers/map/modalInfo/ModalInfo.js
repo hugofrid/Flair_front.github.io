@@ -70,15 +70,15 @@ function ModalInfo(props) {
                     <div className={"slide cityDatas " + ('movedBy' + slide)} >
                         <div className="data"> 
                         <div className="dataName">Prix moyen du m² :</div>
-                            <div className="dataNumb">Actuel : {props.feature.prixActuel}</div>
-                            <div className="dataNumb">{props.displayedInfo==="estimation2" ? 'Dans 2 ans:' + props.feature.prix_2 + "€" :'Dans 5 ans:' + props.feature.prix_5 + "€"}</div>
+                            <div className="dataNumb">Actuel : {(props.feature.prixActuel).toFixed(0)}€</div>
+                            <div className="dataNumb">{props.displayedInfo==="estimation2" ? 'Dans 2 ans : ' + (props.feature.prix_2).toFixed(0) + "€" :'Dans 5 ans : ' + (props.feature.prix_5).toFixed(0) + "€"}</div>
                         </div>
                         <div className="data">
-                            <div className="dataName">Population :</div>
+                            <div className="dataName">Population : </div>
                             <div className="dataNumb">{props.feature.population} </div>
                         </div>
                         <div className="data">
-                            <div className="dataName">Prix moyen de vente d'un bien :</div>
+                            <div className="dataName">Prix moyen de vente d'un bien : </div>
                             <div className="dataNumb">{props.feature.prixVenteMoyen}€</div>
                         </div>
                        

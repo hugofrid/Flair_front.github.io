@@ -22,8 +22,8 @@ function MarkerInfo(props) {
                         </div>
                         <div className="houseInfo">
                             <div className="rooms">{props.marker.properties.nbRooms ?(props.marker.properties.nbRooms + ' pièces') : "" } </div>
-                        <div className="price">{props.marker.properties.price ? ((props.marker.properties.price).toFixed(0) + ' €') : ""}</div>
-                        <div className="price">Prix dans {props.displayInfo === "estimation2" ? '2 ans' : '5 ans'} : {props.marker.properties.price ? ((props.marker.properties.price * props.feature[props.displayedInfo]).toFixed(0)) + ' €' : ""}</div>
+                        <div className="price">{props.marker.properties.price ? ((props.marker.properties.price).toFixed(0)) : ""} €</div>
+                        <div className="price">Prix dans {props.displayedInfo === "estimation2" ? '2 ans' : '5 ans'} : {props.marker.properties.price ? ((props.marker.properties.price * props.feature[props.displayedInfo]).toFixed(0)) + ' €' : ""}</div>
                         {props.marker.properties.url && 
                             <a target='blank' href={props.marker.properties.url} className="housingUrl">
                                 <div className="aganceSite">Voir l'annonce</div>

@@ -84,7 +84,7 @@ export const onMapClick = (setViewport,setClickedFeature, setClickedSource,click
     if (features && features.length && newClickedFeature && features[0].source === 'mainMap') {
         zoomToFeature(newClickedFeature, setViewport, setClickedFeature, setClickedSource)
     }
-    else  if (features && features.length && newClickedFeature && features[1].source === 'mainMap' && clickedFeature.codeINSEE !== newClickedFeature.properties.codeINSEE) {
+    else  if (features && features.length && newClickedFeature && features[1].source === 'mainMap' && (!clickedFeature ||clickedFeature.codeINSEE !== newClickedFeature.properties.codeINSEE)) {
         
         zoomToFeature(newClickedFeature, setViewport, setClickedFeature, setClickedSource)
     }

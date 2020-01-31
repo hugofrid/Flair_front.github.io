@@ -15,23 +15,26 @@ background: rgba(255,255,255,0.5);
 .popup{
   box-sizing: border-box;
   width:80%;
-  height: 70%;
+  height: 80%;
   max-width: 700px;
   background: white;
   border-radius: 34px;
   display: flex;
   flex-direction: column;
-  padding:3rem;
+  padding:1rem 2.5rem;
   text-align: justify;
 }
 
 .logoSpace{
-  height: 110px;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
 
 }
+.textTuto{
+flex:1;}
+
 .buttonSpace{
   margin:3rem 0;
   display: flex;
@@ -43,10 +46,26 @@ background: rgba(255,255,255,0.5);
 }
 .description{
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   flex:1;
   line-height: 1.4rem
 }
+
+
+.tutoScreen{
+  height:150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tutoScreen img{
+  height:100%;
+  width: auto;
+}
+
 .prevention{
   font-size: .6rem;
 }
