@@ -4,7 +4,7 @@
 //export const colors = ['#BC3F1E', '#E5F52B', '#41BA29', '#36951D']
 export const colors = ['#D64823', '#E5F52B', '#92BA29', '#49C826']
 
-export const colorBoundaries = (displayedInfo) => displayedInfo === "estimation2" ? [-8, 0, 6, 10, 23] : [-50, 0, 25, 75, 137];
+export const colorBoundaries = (displayedInfo) => displayedInfo === "estimation2" ? [-8, 0, 6, 10, 23] : [-50, 0, 15, 25, 137];
 
 export const mapStyleLayer = (displayedInfo) => {
 

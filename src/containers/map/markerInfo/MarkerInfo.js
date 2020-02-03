@@ -13,7 +13,7 @@ function MarkerInfo(props) {
     return (
         <div className={"markerInfo " + props.className}>
 
-            <IconBtn className="closeIcon" icon={closeIcon} onClick={() => props.onClose()} alt="close" />
+            <IconBtn className="closeIcon inModal" icon={closeIcon} onClick={() => props.onClose()} alt="close" />
             {props.marker && props.marker.properties &&
                 <div className="infos">
                     <div className="city_name">
@@ -26,8 +26,8 @@ function MarkerInfo(props) {
                         </div>
                         <div className="houseInfo">
                             <div className="rooms">{props.marker.properties.nbRooms ?(props.marker.properties.nbRooms + ' pièces') : "" } </div>
-                        <div className="price">{props.marker.properties.price ? ((props.marker.properties.price).toFixed(0)) : ""} €</div>
-                        <div className="price">Prix dans {props.displayedInfo === "estimation2" ? '2 ans' : '5 ans'} : {( props.marker.properties.price+ (props.marker.properties.price * (props.feature[props.displayedInfo]))/100).toFixed(0) + '€'}</div>
+                        <div className="price">{props.marker.properties.price ? Intl.NumberFormat().format((props.marker.properties.price).toFixed(0)) : ""} €</div>
+                        <div className="price">Prix dans {props.displayedInfo === "estimation2" ? '2 ans' : '5 ans'} : {( props.marker.properties.price+ Intl.NumberFormat().format((props.marker.properties.price * (props.feature[props.displayedInfo]))/100).toFixed(0)) + '€'}</div>
                         {props.marker.properties.url && 
                             <a target='blank' href={props.marker.properties.url} className="housingUrl">
                                 <div className="aganceSite">Voir l'annonce</div>

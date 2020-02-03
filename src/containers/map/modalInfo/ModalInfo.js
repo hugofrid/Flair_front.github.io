@@ -45,7 +45,7 @@ function ModalInfo(props) {
     return (
         <div className="modalInfo">
 
-            <IconBtn className="closeIcon" icon={closeIcon} onClick={closeInfo} alt="close" />
+            <IconBtn className="closeIcon inModal" icon={closeIcon} onClick={closeInfo} alt="close" />
 
             <div className="titleCity">{capitalize(props.feature.city_name)}</div>
             <div className="subInfo">{props.feature.codePostal}</div>
@@ -64,7 +64,7 @@ function ModalInfo(props) {
                             textColor={'#000000'}
                             animDelay={0}
                         />
-                        <div className="chartTitle">Evolution du prix du m²
+                        <div className="chartTitle">Évolution du prix du m²
                         {props.displayedInfo === 'estimation2' ? ' à 2 ans' : ' à 5 ans'}</div>
                     </div>
                     <div className={"slide cityDatas movedBy" + slide} >

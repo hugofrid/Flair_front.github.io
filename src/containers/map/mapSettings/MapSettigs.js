@@ -34,7 +34,7 @@ function MapSettings(props) {
         <div className={"settingsComponent " + (isOpen ? "isOpen" : "")}>
 
 
-            <IconBtn className={!isOpen ? "settingsIcon" : "closeIcon"} icon={isOpen ? closeIcon : filterIcon} onClick={closeSettings}></IconBtn>
+            <IconBtn className={!isOpen ? "settingsIcon" : "closeIcon inModal"} icon={isOpen ? closeIcon : filterIcon} onClick={closeSettings}></IconBtn>
             {isOpen &&
                 <div className="settings">
                     <div className="title">Réglages</div>
@@ -43,12 +43,12 @@ function MapSettings(props) {
                     </div>
                     
                     <div className="section">
-                        <ToggleButton label='Afficher les biens ' checkedValue={props.showHousing} checkedValueChange={value => props.setShowHousing(value)} />
+                        <ToggleButton label='Afficher les annonces ' checkedValue={props.showHousing} checkedValueChange={value => props.setShowHousing(value)} />
                     </div>
                     {
                         props.showHousing &&
                         <div>
-                            <br/><div className="title">Filtre de recherche </div>
+                            <br/><div className="title">Filtres de recherche </div>
                             <div className="houssingSetting">
                                 <div className="housingLabel">
                                     <span style={{ whiteSpace: "nowrap" }}>Nombre de pièces :</span> {props.nbRooms > 0 ? props.nbRooms : '..'}

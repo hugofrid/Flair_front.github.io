@@ -86,13 +86,13 @@ function CityList(props) {
     return (
         <div className={"listComponent " + (props.showCityList ? "isOpen" : "")}>
 
-            <IconBtn className={("toggleIcon ") + (props.showCityList && "closeIcon")} icon={props.showCityList ? closeIcon : searchIcon} onClick={reduceList}></IconBtn>
+            <IconBtn className={("toggleIcon ") + (props.showCityList && "closeIcon inModal")} icon={props.showCityList ? closeIcon : searchIcon} onClick={reduceList}></IconBtn>
 
 
             {props.showCityList && featureList && featureList.length > 0 && loadLimite &&
                 <div className="visibleList">
 
-                    <IconBtn className="listOrder" icon={orderList ? sortDscIcon : sortAscIcon} onClick={() => setOrderList(!orderList)}></IconBtn>
+                    <IconBtn className="listOrder inModal" icon={orderList ? sortDscIcon : sortAscIcon} onClick={() => setOrderList(!orderList)}></IconBtn>
 
                     <SearchInput arraySource={featureList} returnedArray={(elem) => setFilteredList(elem)}></SearchInput>
 
