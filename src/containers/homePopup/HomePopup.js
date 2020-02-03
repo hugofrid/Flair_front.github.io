@@ -16,14 +16,14 @@ function HomePopup(props) {
   const  StepDescritpion = ()=> {
     switch (step) {
       case 0: {
-        return <p className="textTuto">Flair est une application qui vous permet d'investir à l'aide  d'une carte de l'Île-de-France. <br/> Elle trouve pour vous les villes pour lesquelles l’investissement sera le plus rentable. Et vous affiche cette rentabilité selon un code couleur.</p>
+        return <p className="textTuto">Flair est une application qui vous aiguille dans vos investissements grâce à une carte de l'Ile-de-France.<br/> Elle trouve pour vous les villes pour lesquelles l’investissement sera le plus rentable. Et vous affiche cette rentabilité selon un code couleur.</p>
       }
       case 1: {
         return <p className="textTuto">En cliquant sur une ville, vous trouverez des informations provenant des données démographiques, des tendances du marché et des futurs projets d’aménagement urbain.<br/> 
         Ces informations passent par notre algorithme, qui calcule pour vous les zones avec les meilleures rentabilités.</p>
       }
       case 2: {
-        return <p className="textTuto">Chaque ville possède un pourcentage de rentabilité. Vous pouvez accéder aux informations détaillées par ville pour comprendre plus en profondeur la provenance de nos résultats.<br/><br/>Bon Flairage !</p>
+        return <p className="textTuto">Chaque ville possède un pourcentage de rentabilité. Vous pouvez accéder aux informations détaillées par ville pour en savoir davantage.<br/><br/>Bon Flairage !</p>
        
       }
       default: {

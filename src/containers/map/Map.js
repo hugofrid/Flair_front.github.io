@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import MapGL, { Source, Layer, FlyToInterpolator, Marker } from 'react-map-gl';
-import { zoom, onMapClick, goToUserLocation, onHover, zoomToFeature,fetchApiData ,fetchMapData } from './mapUtils'
+import { toggleMode, zoom, onMapClick, goToUserLocation, onHover, zoomToFeature,fetchApiData ,fetchMapData } from './mapUtils'
 import {mapStyleLayer, selectedAreastyle} from './mapStyle.js'
 import './Map.css'
 import './modalInfo/ModalInfo.js'
@@ -10,7 +10,7 @@ import ModalInfo from "./modalInfo/ModalInfo.js";
 import MarkerInfo from "./markerInfo/MarkerInfo.js";
 import IconBtn from '../../componants/iconBtn/iconBtn.js';
 
-import { locationIcon, plusIcon, minusIcon, markerIcon, selectedMarkerIcon } from '../../icons/icons.js'
+import { locationIcon, plusIcon, minusIcon, markerIcon, selectedMarkerIcon,moonIcon,sunIcon } from '../../icons/icons.js'
 
 
 import CityList from './cityList/CityList.js'
@@ -22,7 +22,7 @@ function Map(props) {
 
     const [mapLayer, setMapLayer] = useState();
     const [mapMarker, setMapMarker] = useState();
-    const [showCityList, setShowCityList] = useState(false);
+    const [showCityList, setShowCityList] = useState(true);
     const [displayedInfo, setDisplayedInfo] = useState('estimation2');
     const [showHousing, setShowHousing] = useState(false);
     const [nbRooms, setNbRooms] = useState(0);
@@ -106,7 +106,7 @@ function Map(props) {
 
             <div className="buttons">
 
-
+                 <IconBtn onClick={() => toggleMode(mapStyle, setMapStyle)} icon={mapStyle === 'dark' ?  sunIcon : moonIcon } alt='switch mode' />
                 <IconBtn onClick={() => zoom(viewport, setViewport, '+')} icon={plusIcon} alt='Zomm +' />
                 <IconBtn onClick={() => zoom(viewport, setViewport, '-')} icon={minusIcon} alt='Zomm -' />
                 <IconBtn onClick={() => goToUserLocation(viewport, setViewport)} icon={locationIcon} alt='go to my location' />

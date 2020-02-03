@@ -19,13 +19,15 @@ import _foreignIcon from './foreign.png'
 import _flairIcon from './flair.png'
 import _leftArrowIcon from './leftArrow.svg'
 import _rightArrowIcon from './rightArrow.svg'
-
+import _filterIcon from './filter.png'
 
 
 export const housingIcon = _housingIcon;
 export const leftArrowIcon = _leftArrowIcon;
 export const rightArrowIcon = _rightArrowIcon;
 export const flairIcon = _flairIcon;
+export const filterIcon = _filterIcon;
+
 export const searchIcon = _searchIcon;
 export const searchListIcon = _searchListIcon;
 export const helpIcon = _helpIcon;

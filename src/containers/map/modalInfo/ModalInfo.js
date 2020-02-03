@@ -48,8 +48,7 @@ function ModalInfo(props) {
             <IconBtn className="closeIcon" icon={closeIcon} onClick={closeInfo} alt="close" />
 
             <div className="titleCity">{capitalize(props.feature.city_name)}</div>
-            <div className="m2"></div>
-
+            <div className="subInfo">{props.feature.codePostal}</div>
             <div className="carrousel">
                 <div className={"arrow " + (slide === 0 ? " dissable" : "")} onClick={() => setSlide(0)}>
                     <img src={leftArrowIcon} alt="précedent" />
@@ -65,21 +64,22 @@ function ModalInfo(props) {
                             textColor={'#000000'}
                             animDelay={0}
                         />
-                        <div className="chartTitle">Estimation de la rentabilité{props.displayedInfo === 'estimation2' ? ' à 2 ans' : ' à 5 ans'}</div>
+                        <div className="chartTitle">Evolution du prix du m²
+                        {props.displayedInfo === 'estimation2' ? ' à 2 ans' : ' à 5 ans'}</div>
                     </div>
                     <div className={"slide cityDatas movedBy" + slide} >
                         <div className="data"> 
                         <div className="dataName">Prix moyen du m² :</div>
-                            <div className="dataNumb">Actuel : {(props.feature.prixActuel).toFixed(0)}€</div>
-                            <div className="dataNumb">{props.displayedInfo==="estimation2" ? 'Dans 2 ans : ' + (props.feature.prix_2).toFixed(0) + "€" :'Dans 5 ans : ' + (props.feature.prix_5).toFixed(0) + "€"}</div>
+                            <div className="dataNumb">Actuel : {Intl.NumberFormat().format((props.feature.prixActuel).toFixed(0))}€</div>
+                            <div className="dataNumb">{props.displayedInfo==="estimation2" ? 'Dans 2 ans : ' + Intl.NumberFormat().format((props.feature.prix_2).toFixed(0)) + "€" :'Dans 5 ans : ' + Intl.NumberFormat().format((props.feature.prix_5).toFixed(0)) + "€"}</div>
                         </div>
                         <div className="data">
                             <div className="dataName">Population : </div>
-                            <div className="dataNumb">{props.feature.population} </div>
+                            <div className="dataNumb">{Intl.NumberFormat().format(props.feature.population)} </div>
                         </div>
                         <div className="data">
                             <div className="dataName">Prix moyen de vente d'un bien : </div>
-                            <div className="dataNumb">{props.feature.prixVenteMoyen}€</div>
+                            <div className="dataNumb">{Intl.NumberFormat().format(props.feature.prixVenteMoyen)}€</div>
                         </div>
                        
                     </div>

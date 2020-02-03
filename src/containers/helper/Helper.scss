@@ -3,43 +3,39 @@
   height: 24px;
 }
 
-
-
-
 .textInt {
   display: none;
   z-index: 10000;
   width: 300px;
-  height: 375px;
+  height: auto;
   margin-right: 5px;
   margin-left: 5px;
   margin-top: 25px;
   position: absolute;
   top: 110%;
-  right:0;
-  background:#f98330;
+  right: 0;
+  background: #f98330;
   text-align: justify;
-  color:white;
+  color: white;
   padding: 1.5rem;
   opacity: 0.95;
-border-radius: 15px;
-
+  border-radius: 15px;
 }
 
-.helper:hover .textInt{
-    display: block;
+.helper:hover .textInt {
+  display: block;
 }
 
 .link:hover + .text {
   display: block;
 }
 
-li{
+li {
   list-style: none;
 }
 
-li:before{
-  content:"\2192";
+li:before {
+  content: "\2192";
 }
 
 .endLine {

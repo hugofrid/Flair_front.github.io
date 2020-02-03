@@ -10,7 +10,7 @@
 .listComponent.isOpen {
   padding: 1rem;
   transition: 1s;
-  width: 350px;
+  width: 320px;
   height: 400px;
   max-height: 45%;
   border-radius: 15px;
