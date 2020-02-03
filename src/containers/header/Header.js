@@ -6,7 +6,7 @@ import Helper from '../helper/Helper'
 function Header() {
 
     return ( <header className="head">
-    <img className="sizeLogo" src={flairIcon} alt="logo"/> 
+      <img className="sizeLogo" src={flairIcon} alt="logo" onClick={() => document.location.reload(true)}/> 
         <div className="siteTitle">Investissez le futur</div>
         <Helper className="help"></Helper>
   </header>)
