@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Flair_front.github.io/static/css/main.b4e1c4ba.chunk.css",
-    "main.js": "/Flair_front.github.io/static/js/main.c15f0d40.chunk.js",
-    "main.js.map": "/Flair_front.github.io/static/js/main.c15f0d40.chunk.js.map",
+    "main.js": "/Flair_front.github.io/static/js/main.e794f84a.chunk.js",
+    "main.js.map": "/Flair_front.github.io/static/js/main.e794f84a.chunk.js.map",
     "runtime-main.js": "/Flair_front.github.io/static/js/runtime-main.74d045b4.js",
     "runtime-main.js.map": "/Flair_front.github.io/static/js/runtime-main.74d045b4.js.map",
     "static/css/2.63582517.chunk.css": "/Flair_front.github.io/static/css/2.63582517.chunk.css",
     "static/js/2.dbec0705.chunk.js": "/Flair_front.github.io/static/js/2.dbec0705.chunk.js",
     "static/js/2.dbec0705.chunk.js.map": "/Flair_front.github.io/static/js/2.dbec0705.chunk.js.map",
     "index.html": "/Flair_front.github.io/index.html",
-    "precache-manifest.64234fcd89cd3d31877009fa462721c8.js": "/Flair_front.github.io/precache-manifest.64234fcd89cd3d31877009fa462721c8.js",
+    "precache-manifest.2fcedf6f5f125a2cff3058683c2b511b.js": "/Flair_front.github.io/precache-manifest.2fcedf6f5f125a2cff3058683c2b511b.js",
     "service-worker.js": "/Flair_front.github.io/service-worker.js",
     "static/css/2.63582517.chunk.css.map": "/Flair_front.github.io/static/css/2.63582517.chunk.css.map",
     "static/css/main.b4e1c4ba.chunk.css.map": "/Flair_front.github.io/static/css/main.b4e1c4ba.chunk.css.map",
@@ -31,6 +31,6 @@
     "static/css/2.63582517.chunk.css",
     "static/js/2.dbec0705.chunk.js",
     "static/css/main.b4e1c4ba.chunk.css",
-    "static/js/main.c15f0d40.chunk.js"
+    "static/js/main.e794f84a.chunk.js"
   ]
 }
