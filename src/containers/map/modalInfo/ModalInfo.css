@@ -55,7 +55,7 @@
 }
 
 .arrow.dissable{
-    filter:contrast(0.2);
+    filter:contrast(0.001);
     cursor:unset;
 }
 

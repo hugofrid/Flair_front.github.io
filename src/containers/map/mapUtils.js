@@ -51,7 +51,7 @@ export const zoomToFeature = (feature,setViewport,setClickedFeature, setClickedS
         longitude: ((maxLng + minLng)/2)+0.03,
         transitionDuration: 1000,
         transitionInterpolator: new FlyToInterpolator(),
-        zoom: 11
+        zoom: 12
      }
      setViewport(newViewport);
 
@@ -102,7 +102,7 @@ export const goToUserLocation = (viewport,setViewport) => {
             longitude: position.coords.longitude,
             transitionDuration: 1500,
             transitionInterpolator: new FlyToInterpolator(),
-            zoom: 11
+            zoom: 12
         }
 
         setViewport(newViewport)
